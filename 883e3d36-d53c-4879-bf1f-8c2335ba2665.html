@@ -25,14 +25,17 @@ html {
   margin: 0;                                          /* no margins */
   background-color: black;                            /* black background */
   vertical-align: middle;                             /* align vertical middle */
-  height: 48px;
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
 }
 
 .title {
 	width: 100%;                                      /* title container width 100% */
 	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
     grid-row: 1;                                      /* row 1 */
-	height: 48px;
+
 }
 .cards {                                              /* empty not used here */
 }
@@ -85,6 +88,10 @@ html {
   padding: 5px;                                        /* add some padding */
 }
 
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
 .descriptiontitle {
 	grid-column: 2;                                    /* column 2 of grid */
 	grid-row: 2;                                       /* row 2 of grid */
@@ -106,6 +113,7 @@ html {
 .description img {
 	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
 }
+
 
 .MenuButton {
   border: none;                                        /* Remove borders */
@@ -168,11 +176,11 @@ a:active {
 
 		</style>
 	</head>
-	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('883e3d36-d53c-4879-bf1f-8c2335ba2665/c66322bf-cd91-4c7e-ad2a-81afd9c5502f.jpg');">
 		<div class="cards">
 			<div class="card">
 				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Fallout 2 Classic</h2>
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="883e3d36-d53c-4879-bf1f-8c2335ba2665/0a6ec3a7-5b3e-4c14-ba48-b5f3ddfd7295.png"/> Fallout 2 Classic</h2>
 				</div>
 				<div class="detailstitle">
 				<H3>Detalles</H3>
@@ -181,7 +189,11 @@ a:active {
 					<div style="overflow: auto;">
 						<TABLE class="detailstable">
 							<col style="width:50%" />
-							<col style="width:50%" />							<TR>
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="883e3d36-d53c-4879-bf1f-8c2335ba2665/4ef5e8eb-5c49-4483-ae8c-298ec6949476.jpg"/></TD>
+							</TR>
+							<TR>
 								<TD>Tiempo de juego</TD>
 								<TD>No Jugado</TD>
 							</TR>
@@ -268,5 +280,10 @@ Your tribe has survived over ten years of drought but now their reserves are at 
 				</div>
 			</div>
 		</div>
-	</body>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
 </html>

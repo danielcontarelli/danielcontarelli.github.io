@@ -25,14 +25,17 @@ html {
   margin: 0;                                          /* no margins */
   background-color: black;                            /* black background */
   vertical-align: middle;                             /* align vertical middle */
-  height: 48px;
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
 }
 
 .title {
 	width: 100%;                                      /* title container width 100% */
 	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
     grid-row: 1;                                      /* row 1 */
-	height: 48px;
+
 }
 .cards {                                              /* empty not used here */
 }
@@ -85,6 +88,10 @@ html {
   padding: 5px;                                        /* add some padding */
 }
 
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
 .descriptiontitle {
 	grid-column: 2;                                    /* column 2 of grid */
 	grid-row: 2;                                       /* row 2 of grid */
@@ -106,6 +113,7 @@ html {
 .description img {
 	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
 }
+
 
 .MenuButton {
   border: none;                                        /* Remove borders */
@@ -168,11 +176,11 @@ a:active {
 
 		</style>
 	</head>
-	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('ec40caa6-1008-4692-a2b2-a6e0d2f1d593/2a43fde1-973a-4b68-988a-9faa55f1dedf.jpg');">
 		<div class="cards">
 			<div class="card">
 				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Luxor Amun Rising HD</h2>
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="ec40caa6-1008-4692-a2b2-a6e0d2f1d593/9d4a4460-9da7-4d8b-8bf6-bc0cc16aae0e.jpg"/> Luxor Amun Rising HD</h2>
 				</div>
 				<div class="detailstitle">
 				<H3>Detalles</H3>
@@ -181,7 +189,11 @@ a:active {
 					<div style="overflow: auto;">
 						<TABLE class="detailstable">
 							<col style="width:50%" />
-							<col style="width:50%" />							<TR>
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="ec40caa6-1008-4692-a2b2-a6e0d2f1d593/0277b2d1-bcbd-4f14-80d2-92d33121fd36.jpg"/></TD>
+							</TR>
+							<TR>
 								<TD>Tiempo de juego</TD>
 								<TD>3m 0s</TD>
 							</TR>
@@ -274,5 +286,10 @@ a:active {
 				</div>
 			</div>
 		</div>
-	</body>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
 </html>

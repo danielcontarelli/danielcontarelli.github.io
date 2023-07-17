@@ -25,14 +25,17 @@ html {
   margin: 0;                                          /* no margins */
   background-color: black;                            /* black background */
   vertical-align: middle;                             /* align vertical middle */
-  height: 48px;
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
 }
 
 .title {
 	width: 100%;                                      /* title container width 100% */
 	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
     grid-row: 1;                                      /* row 1 */
-	height: 48px;
+
 }
 .cards {                                              /* empty not used here */
 }
@@ -85,6 +88,10 @@ html {
   padding: 5px;                                        /* add some padding */
 }
 
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
 .descriptiontitle {
 	grid-column: 2;                                    /* column 2 of grid */
 	grid-row: 2;                                       /* row 2 of grid */
@@ -106,6 +113,7 @@ html {
 .description img {
 	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
 }
+
 
 .MenuButton {
   border: none;                                        /* Remove borders */
@@ -168,11 +176,11 @@ a:active {
 
 		</style>
 	</head>
-	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('a1f6920e-aab4-4175-9be7-063c0790f025/3e0b9edf-2044-44dd-8c88-3db2dd8247fb.jpg');">
 		<div class="cards">
 			<div class="card">
 				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Epigenesis</h2>
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="a1f6920e-aab4-4175-9be7-063c0790f025/94376e76-0085-45cc-9a87-a1bb1e4d55f3.ico"/> Epigenesis</h2>
 				</div>
 				<div class="detailstitle">
 				<H3>Detalles</H3>
@@ -181,7 +189,11 @@ a:active {
 					<div style="overflow: auto;">
 						<TABLE class="detailstable">
 							<col style="width:50%" />
-							<col style="width:50%" />							<TR>
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="a1f6920e-aab4-4175-9be7-063c0790f025/f449d1cd-0069-4f15-9832-caac8dad721e.jpg"/></TD>
+							</TR>
+							<TR>
 								<TD>Tiempo de juego</TD>
 								<TD>1h 21m 0s</TD>
 							</TR>
@@ -264,5 +276,10 @@ a:active {
 				</div>
 			</div>
 		</div>
-	</body>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
 </html>

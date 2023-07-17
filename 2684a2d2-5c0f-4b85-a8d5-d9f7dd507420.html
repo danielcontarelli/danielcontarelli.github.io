@@ -25,14 +25,17 @@ html {
   margin: 0;                                          /* no margins */
   background-color: black;                            /* black background */
   vertical-align: middle;                             /* align vertical middle */
-  height: 48px;
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
 }
 
 .title {
 	width: 100%;                                      /* title container width 100% */
 	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
     grid-row: 1;                                      /* row 1 */
-	height: 48px;
+
 }
 .cards {                                              /* empty not used here */
 }
@@ -85,6 +88,10 @@ html {
   padding: 5px;                                        /* add some padding */
 }
 
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
 .descriptiontitle {
 	grid-column: 2;                                    /* column 2 of grid */
 	grid-row: 2;                                       /* row 2 of grid */
@@ -106,6 +113,7 @@ html {
 .description img {
 	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
 }
+
 
 .MenuButton {
   border: none;                                        /* Remove borders */
@@ -168,11 +176,11 @@ a:active {
 
 		</style>
 	</head>
-	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2684a2d2-5c0f-4b85-a8d5-d9f7dd507420/4e5e0a92-7b5f-4477-8cb5-d3236295f069.jpg');">
 		<div class="cards">
 			<div class="card">
 				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> NecroVisioN: Lost Company</h2>
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="2684a2d2-5c0f-4b85-a8d5-d9f7dd507420/f0fa8e90-a7e5-470b-8067-a85176cbcbed.ico"/> NecroVisioN: Lost Company</h2>
 				</div>
 				<div class="detailstitle">
 				<H3>Detalles</H3>
@@ -181,7 +189,11 @@ a:active {
 					<div style="overflow: auto;">
 						<TABLE class="detailstable">
 							<col style="width:50%" />
-							<col style="width:50%" />							<TR>
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="2684a2d2-5c0f-4b85-a8d5-d9f7dd507420/08e6975b-ab5e-4582-9e09-c186275c9de5.jpg"/></TD>
+							</TR>
+							<TR>
 								<TD>Tiempo de juego</TD>
 								<TD>No Jugado</TD>
 							</TR>
@@ -264,5 +276,10 @@ a:active {
 				</div>
 			</div>
 		</div>
-	</body>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
 </html>
