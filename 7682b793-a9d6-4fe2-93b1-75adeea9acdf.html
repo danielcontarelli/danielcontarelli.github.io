@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>CO-OP : Decrypted</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> CO-OP : Decrypted</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-23/07/2021">23/07/2021</a> 17:30:21</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascendente_name_ascendente.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list%20text_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-17/08/2015">17/08/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-46">46</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Pixelz Games">Pixelz Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Pixelz Games">Pixelz Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/315130" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/315130/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/315130/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=315130" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/315130" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=315130" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/315130/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<h1>Update Notes</h1><p>Patch note beta v.02<br><br><ul class="bb_ul"><li> Added an outline around the sprite in Unlockable Content in the menu<br></li><li> Added sound effects in the first cutscene<br></li><li> Added Antialisasing in the option menu<br></li><li> Added SSAO in the option menu<br></li><li> Added subtitles option in the option menu for UPCOMMING NARRATIONS in next update this week<br></li><li> Fixed gamebreaking bug in level 1 where you could put a box on the catwalk and lose it forever<br></li><li> Nerfed the Security Cameras so you don't restart the entire level when getting caught (restart to latest checkpoint instead)<br></li><li> Added 1920x1200 resolution option<br></li><li> Changed the tutorial text in level 1<br></li><li> Other...</li></ul><br>We already started working on another update later this week that will add a narration to the game with subtitles and of course bunch of other stuff. We are also gonna add more content to the game in a further update and we are currently working on a PS4 version. Hopefully it will be ready soon. <br><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>Update Notes</h1><p>Patch note beta v.03<br><br><ul class="bb_ul"><li> Added a feature that displays your best time in any level in the menu and at the end of a level<br></li><li> Added new achievements<br></li><li> Added sound effects in the first cutscene<br></li><li> Added narrations and subtitles option<br></li><li> Added some more sound effects<br></li><li> Fixed many gameplay bugs<br></li><li> Fixed AZERTY bug that would cause your keyboard to be considered AZERTY<br></li><li> Fixed the Next Level button in lvl 9<br></li><li> Fixed a bug where you would get more Orbs than you collected<br></li><li> The screen that displays after completion of a level now displays properly and the players are frozen<br></li><li> Other...</li></ul><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>Update Notes</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/315130/extras/OSs_on_Steam.png?t=1447362861" /><br><br>Patch note beta v.04<br><br><ul class="bb_ul"><li> Added Mac OS &amp; Linux compatibility.<br></li><li> Fixed issue where you couldn't unlock two achievements at the same time.<br></li><li> Fixed issue where you couldn't play level 1, 2 or 3 in single player after having played in multiplayer.<br></li><li> Fixed issue where the character animations would freeze upon going back to the menu after finishing a level.<br></li><li> Fixed issue where unlocked achievements would only pop up on Steam once you quit the game.<br></li><li> Added feature where the cursor disappears after 3.1415 seconds of inactivity.<br></li><li> Adjusted camera positions when playing in multiplayer.<br></li><li> Increased &quot;achievement unlocked&quot; window's size on bigger resolutions.<br></li><li> Fixed potential gameplay bugs and optimized scripts.<br></li><li> Other...</li></ul><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>Update Notes</h1><p>Patch note beta v.05<br><br><ul class="bb_ul"><li> Added level 15 to the build <br></li><li> Increased deadzones in inputs, so controllers should be more fluid.<br></li><li> Fixed issue where unlockables still cost 5 orbs to buy instead of 10.<br></li><li> Fixed mouse cursor flickering issue<br></li><li> Fixed gamebreaking issue in level 1 if you’d get caught by security camera<br></li><li> Made a platform in level 6 go down faster<br></li><li> level 6 fixed potential gamebreaking bug where you could recycle a box and lose it forever<br></li><li> Adjusted best times for many levels<br></li><li> Adjusted Speedrunner achievement’s requirements<br></li><li> Fixed an issue where you could absorb energy near a power supplier and get far away while absorbing<br></li><li> Added credits screen and achievement<br></li><li> Removed &quot;Early bird&quot; &amp; &quot;Closed beta tester&quot; achievements<br></li><li> Made audio options functional in options screen<br></li><li> Cancel button on controllers now works as expected in menus<br></li><li> Added Mac support to menu navigation with controller</li></ul><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>Update Notes</h1><p>Patch note beta v.06<br><br><ul class="bb_ul"><li> Potential bug in level 11 no checkpoint in beginning<br></li><li> Changed coop camera FAST BLOOM in level 15<br></li><li> Added music to level 11<br></li><li> Changed Binaries button for Binary in options screen<br></li><li> Increased name size and readjusted logo in credits screen<br></li><li> Fixed credits screen not going away<br></li><li> Fixed saved options not persisting between levels<br></li><li> Fixed bug where a camera would catch you constantly when you respawned<br></li><li> Updated best times in some levels</li></ul><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>Update Notes</h1><p>Patch notes beta v.07<br><br><ul class="bb_ul"><li> Added online mode (playable up to chapter two so far)<br></li><li> Updated the game's engine to newest version (which broke everything, but we're fixing it all!)<br></li><li> Fixed options not saving correctly for some users<br></li><li> Fixed music in menu</li></ul><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>Update Notes</h1><p>Patch notes v.1.0<br><br><ul class="bb_ul"><li> Fixed some anchors issues with menus and interfaces<br></li><li> Fixed some physics issues with boxes and R3D where he could push them<br></li><li> Adjusted BLU3's movement sounds<br></li><li> Adjusted buttons in the menus so they don't loop from top to bottom and left to right<br></li><li> Changed and tweaked the level 1 cinematic glow on cameras<br></li><li> Fixed some PlayerPrefs bugs with the subtitles<br></li><li> Changed material on a Terminal in level 2 where it would not display the cue properly<br></li><li> Fixed the pulse animation on the Room view in level 3<br></li><li> Removed some Z-Fighting on the ground in level 3<br></li><li> Lowered a keycard in level 4 for R3D<br></li><li> Added a fade-in when loading a level<br></li><li> Adjusted the End level of level 7 so it doesn't get stuck anymore<br></li><li> Fixed a gamebreak in level 9 where R3D could get stuck if only playing with BLU3<br></li><li> Changed the sound of turrets (old sound was still on)<br></li><li> Removed some idle Yellows in level 10<br></li><li> Fixed a gamebreak with the End of game Scanner in level 12-14<br></li><li> Made the camera a bit farther in a room with R3D in level 13<br></li><li> Adjusted a focus on a terminal in level 15 (was too close)<br></li><li> Fixed some Door Unlock UI would that  appear after opening a door in level 15<br></li><li> Fixed a gamebreak in level 16 where you could drop a crate in the foreground and not be able to grab it ever again<br></li><li> Removed all UI assiciated with BETA version<br></li><li> Others...</li></ul><br>Cheers! <br><br>Don't forget to follow us on facebook / twitter and review the game if you want!</p><br><h1>About the Game</h1><u><strong>CO-OP: Decrypted</strong></u><br><br>R3D is activated in what appears to be a recycling facility. He is subjected to some functionality tests under the surveillance of the factory's drones. While following their instructions, his receptors connect with BLU3’s; another robot that seems to share R3D’s unwilling fate. Together, they must cooperate to free themselves from their captors and escape from the &quot;recycling&quot; facility.<br><br>FEATURES: <br><br><ul class="bb_ul"><li>Local co-op</li></ul><ul class="bb_ul"><li>Two robots with unique powers</li></ul><ul class="bb_ul"><li>Full dynamic lighting and physical objects</li></ul><ul class="bb_ul"><li>Steam achievements</li></ul><ul class="bb_ul"><li>Unlockabale content</li></ul><ul class="bb_ul"><li>Different levels of difficulty that change gameplay elements</li></ul><ul class="bb_ul"><li>Original soundtrack</li></ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
