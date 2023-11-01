@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>A Total War Saga: Thrones of Britannia</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('298c6cbe-9320-45b2-8dd3-9dd5b1f3c586/c75b6d92-79af-4f02-88b4-326836152937.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="298c6cbe-9320-45b2-8dd3-9dd5b1f3c586/3850a7f6-bc4f-4c60-bbee-43708e0baee9.ico"/> A Total War Saga: Thrones of Britannia</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="298c6cbe-9320-45b2-8dd3-9dd5b1f3c586/5aa003ad-80f1-4a2f-9134-b27c62c8b7bf.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>9h 53m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-16/08/2023">16/08/2023</a> 14:23:14</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-30/08/2023">30/08/2023</a> 9:58:46</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descendente_name_ascendente.html#quicklink-30/08/2023">30/08/2023</a> 10:01:52</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascendente_name_ascendente.html#quicklink-Jugado">Jugado</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20list%20text_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-02/05/2018">02/05/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-69">69</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Creative Assembly">Creative Assembly</a><br/><a href="default%20list%20text%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Feral Interactive (Linux)">Feral Interactive (Linux)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Feral Interactive (Mac)">Feral Interactive (Mac)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Feral Interactive (Linux)">Feral Interactive (Linux)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Feral Interactive (Mac)">Feral Interactive (Mac)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-SEGA">SEGA</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Co-Op">Co-Op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-LAN Co-Op">LAN Co-Op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-LAN Pvp">LAN Pvp</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20text%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/712100" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/712100/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/712100/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=712100" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/712100" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=712100" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/712100/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Atmospheric">Atmospheric</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-City Builder">City Builder</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Co-op">Co-op</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Grand Strategy">Grand Strategy</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Historical">Historical</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Medieval">Medieval</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Military">Military</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-rts">rts</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Sandbox">Sandbox</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Singleplayer">Singleplayer</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Tactical">Tactical</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Turn-based">Turn-based</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Turn-based Strategy">Turn-based Strategy</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Vikings">Vikings</a><br/><a href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-War">War</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag"><strong>A Total War™ Saga: Thrones of Britannia</strong></h2><br><br>The year is 878 AD, the embattled English king Alfred the Great has mounted a heroic defence at the battle of Edington, and blunted the Viking invasion. Chastened – but not yet broken – the Norse warlords have settled across Britain. For the first time in nearly 80 years, the land is in a fragile state of peace.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/712100/extras/S_BATTLE_FLYOVER.jpg?t=1668767974" /><br><br>Throughout this sceptred isle, the kings of England, Scotland, Ireland and Wales sense a time of change approaching; a time of opportunity. There will be treaties. There will be war. There will be turns of fortune that become the stuff of legend, in a saga that charts the ascent of one of history’s greatest nations.<br><br><i>Kings will rise. One will rule.</i><br><br>Thrones of Britannia is a standalone Total War game which will challenge you to re-write a critical moment in history, one that will come to define the future of modern Britain. With ten playable factions, you must build and defend a kingdom to the glory of Anglo-Saxons, Gaelic clans, Welsh tribes or Viking settlers. Forge alliances, manage burgeoning settlements, raise armies and embark on campaigns of conquest across the most detailed Total War map to date.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/712100/extras/S_Charge_Battle.jpg?t=1668767974" /><br><br><strong>Choose your strategy </strong><br><br>The Grand Campaign offers multiple routes to a glorious Victory; aggressively expand your territory through force of arms, acquire renown through construction, advanced technology and influence, or complete a series of unique objectives based on your chosen faction’s history. Once completed, steady yourself for a significant late-game challenge and the final, Ultimate victory condition.<br><br><strong>Explore and conquer the British Isles</strong><br><br>From the snowy highlands of Scotland to the orchards and meadows of Kent, push back the fog-of-war and unveil the extent of Anglo-Saxon Britain. Varied towns, cities and rural settings inspire a host of different battlefield environments. Experiment with the strategic opportunities afforded by newly capturable minor settlements. Throttle your enemies’ trade routes and coax them out of strong, defensible positions. <br><br><strong>Viking warlord or Anglo-Saxon king, define their legend</strong><br><br>Each faction will face a series of unique events and branching dilemmas, often based on authentic historical events and issues of the time. Embark on Viking expeditions, manage the Anglo-Saxon peasant economy, each faction feels and plays differently. Carve out unique roles for your King and Nobles, customise their impact by making meaningful choices about their development and determine how their story will unfold. <br><br><strong> ‘Classic’ Total War gameplay refined</strong><br><br>Includes many updates to core Total War mechanics - such as provinces, politics, technologies, recruitment, dilemmas and much more - designed to make your experience more immersive and more meaningful.<h2 class="bb_tag"><strong>Playable factions, cultures and kings:</strong></h2><br><br>Thrones of Britannia will include ten playable factions, from five cultures, with a summary below. <br><br><strong>The Anglo Saxons – West Seaxe and Mierce</strong><br><br>When Roman rule in England concluded, new kingdoms of Germanic stock coalesced in the counties now known as Northumbria, Mercia, Wessex, Essex, Sussex, East Anglia and Kent. The peoples of these regions came collectively to be known as the Anglo Saxons.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/712100/extras/Alfred_The_Lad.jpg?t=1668767974" /><br><br><strong>West Seaxe</strong><br><strong>Faction Leader: King Alfred</strong><br><br>As the dominant Anglo-Saxon kingdom of southern England, the forces of West Seaxe – or Wessex in modern English – provided the isle’s primary resistance against the incursions of the Great Heathen Army. From the capital city of Winchester, Wessex conquered lands in Surrey, Sussex, Kent, Essex and even Mercia. Alfred’s dogged defense of the Danish invasion laid the foundations for Wessex to unite England under one ruler for the first time in 927 AD.<br><br><strong>Mierce</strong><br><strong>Faction Leader: Ceowulf</strong><br><br>From its capital city of Tamworth, the kings of Mierce – known now as Merica - ruled the area now known as the Midlands. At its height, Mierce stretched from Northumbria in the north of England to Kent, Sussex and Wessex to the south. In 877 AD, the Great Heathen Army seized the eastern part of the kingdom to form the Danelaw, or East Engle.<br><br><strong>The Gaels – Mide and Circenn</strong><br><br>Gaelic culture initially developed in Ireland, their society built around a system of clans and chieftains. They raided and traded with Roman settlements, and by 878 AD had expanded from Ireland to inhabit much of Scotland.<br>With the influx of the Vikings, some raiders settled in Gaelic lands, becoming the Norse-Gaels. The Scottish Gaels would absorb the Picts to become the Kingdom of Alba – essentially setting the blueprint for modern Scotland. <br><br><strong>Mide</strong><br><strong>Faction Leader: King Flann Sinna</strong><br><br>Mide lies at the heart of Ireland. Not just geographically, but politically, intellectually and spiritually. Many High Kings have risen from Mide, and its current ruler, Flann Sinna, aspires to that title.<br><br>With many fellow Irish factions nearby, Mide is in a position to potentially bring the disparate clans together, and usher in an era of Irish prosperity. However, threats are never far away… the Vikings of Dyflin have settled to the east, and their power and influence are growing. Will Mide strive to keep the uneasy peace? Unite the clans in a war against these Norse settlers? Or find some other route to supremacy?  <br><br><strong>Circenn</strong><br><strong>Faction Leader: Áed mac Cináeda</strong><br><br>Circenn was in origin Pictish, but became more heavily influenced by the Gaels and other peoples over time as they were driven away from the relentless Viking raids. 878 AD marked the end of the Viking invasions, but Circenn’s troubles were far from over. While she had a firm hold over the eastern coast of Scotland, many threats still exist – both within and without.   <br><br>Scoan, the capital of Circenn, was once home to the legendary Stone of Destiny, said to bestow divine strength on her people. Where the stone now resides is a mystery, but if clues can be found, surely the Stone’s recovery would be an adventure worth undertaking…<br><br><strong>The Welsh – Gwined and Strat Clut</strong><br><br>The Welsh Kingdoms descended from the Celtic Britons who occupied much of the island of Britain from the Iron Age, into and beyond its Romanisation in the First Century. <br><br>Ironically, the term ‘Welsh’ derives from the Anglo-Saxon term for foreigner, ‘wealas’, which they applied to the native Britons. The Anglo-Saxons flourished and many of the old Brittonic kingdoms began to disappear. <br><br><strong>Gwined</strong><br><strong>Faction Leader: King Anaraut</strong><br><br>The people of Gwined have some claim to the title of 'true Britons', having been driven to the far west by invaders who now call themselves ‘English’. Renowned both for their bardic arts and their skill with the longbow, the Welsh of Gwined thrived under the leadership of Rhodri Mawr. <br><br>Rhodri kept Gwined largely free of Vikings and other invaders while expanding its borders. Now he is gone and his lands are divided. <br><br><strong>Strat Clut</strong><br><strong>Faction Leader: Run</strong><br><br>Strat Clut is a kingdom of the Old North that can be traced back to the Fifth Century and the Celtic Britons. The realm was formerly based at the fortress of Alt Clut but driven out by a Viking invasion in 870. The current King Artgal was taken captive and reportedly killed in mysterious circumstances. The kingdom reformed further into the valley of the River Clyde under the leadership of his only son Run.<br><br><strong>The Great Viking Army – Northymbre and East Engle</strong><br><br>In 865 AD, Ragnar’s sons led the Great Viking Army and made landfall in East Anglia. Over the next 15 years the Vikings ranged high and low, from Wessex to The Clyde, conquering towns, claiming victories and suffering their share of defeats until the Battle of Edington in 878 AD, where its leader Guthrum met his match in the young King Alfred and his West Saxon army. Bested in the field, his forces retreated in disarray to a nearby fortress. Flush with success, Alfred’s men gave chase and laid siege. After a fortnight of starvation, the invaders surrendered.<br><br>Under the terms of his capitulation, Guthrum was baptised into Christianity and he and his men were allowed to return to East Anglia and settle – provided they kept Alfred’s peace, of course.<br>Defeated, but never humbled, the Vikings seethe with an all-consuming rage. One does not cage the wolf without consequence…<br><br><strong>Northymbre</strong><br><strong>Faction Leader: Guthfrid</strong><br><br>When the Vikings arrived in Northumbria in 867 AD, they took the city of York – or Eoferwic, as was – for their stronghold. And what a bastion it was, with its formidable Roman walls still standing strong 700 years on. King Aelle of Northumbria attempted to wrest the city back from the Danes, but was captured during the attack. In retribution for Aelle’s execution of their father, the sons of Ragnar made an example of him with the horrifying Blood Eagle ritual.<br><br>Northumbria remained under Viking control and, after the battle of Edington and the subsequent treaty of Wedmore, a portion of the Great Viking Army marched back to Northumbria, to settle under Alfred’s peace.<br><br><strong>East Engle</strong><br><strong>Faction Leader: Guthrum</strong><br><br>Forming the bulk of Britannia’s south-easterly coast, East Engle was the staging-point of the Great Viking Army’s invasion, and the region where many of its warriors settled after the Battle of Edington. Under the rule of the Danish leader Guthrum (or Æthelstan, to use his adoptive name by Alfred) it would ultimately come to be known as the Danelaw.<br>Yet still, some fight remains in the Danes of East Engle. One does not shed the mantle of glory and become a landsman overnight.<br><br><strong>The Viking Sea Kings – Dyflin and Sudreyar</strong><br><br>After nearly a century of escalating raids, the Vikings left an indelible stamp on Britannia, altering the course of its history forever. Not least of all culturally, as many smaller bands of Vikings had settled around the isles prior to Alfred’s defeat of the Great Viking army.<br>These smaller factions traded an existence of ceaseless conflict for a new life in Britannia, establishing their own petty principalities, intermarrying and ultimately becoming part of the warp-and-woof of Britannic life. This mingling of cultures, so emblematic of British history, helped create the rich melting-pot of attitudes, beliefs and language that has made the isles and their people so unique.<br><br>Some Vikings never truly settled however; their designs were grander, their hunger for conquest and greatness unquenched. These Sea Kings would continue their bellicose work, heedless of any decree from England’s upstart ruler…<br><br><strong>Dyflin</strong><br><strong>Faction Leader: Bardr</strong><br><br>Dyflin was a major port town on the east coast of Ireland, and the site of Britannia’s largest slave market. It was a major site of Viking occupation, and was ruled until 873 by the Viking lord Imar, often associated with Ivar the Boneless, a son of the legendary Viking warlord Ragnar Lothbrok. Viking raiders had wintered there as early as 840 AD, so their association with the region had been a long one, and over time their customs began to take on a more Gaelic flavour as the slow process of integration took its course. <br><br>By 878 AD however, Imar’s son Bardr was firmly established on the throne. Would this ambitious Viking ruler seek to seal a lasting peace with the surrounding Gaelic factions? Or return to the ways of Ragnar, and pursue a path of bloodshed and domination? It is hard to ignore the calling of one’s warrior-blood… <br><br><strong>Sudreyar</strong><br><strong>Faction Leader: Eirik</strong><br><br>To the west of Alba lies Sudreyar, the Kingdom of the Southern Isles. Comprising the southern Hebrides, these scattered islands were sparsely populated and, bearing the full brunt of the Atlantic weather, were not lands suited to the less-hardy.<br><br>Like much of Britannia, these islands saw increasing Viking contact from the 8th Century. Prior to this period they formed part of the Gaelic kingdom of Dalriada, until they fell under Viking control. Over the next century, Scandinavian occupancy took on a distinctly Gaelic flavour (and vice-versa), particularly after 872 AD when Harald Fairhair became king of Norway, and his former opponents flocked to the area.<br><br>Materially poor, but offering an excellent base for those of a nautical bent, the isles of Sudreyar are a perfect staging-post for raiders and explorers.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
