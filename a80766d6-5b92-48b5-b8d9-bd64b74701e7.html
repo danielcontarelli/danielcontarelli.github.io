@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Felix The Reaper</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('a80766d6-5b92-48b5-b8d9-bd64b74701e7/374597cf-5f5c-4961-bd41-0919ad2c3366.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="a80766d6-5b92-48b5-b8d9-bd64b74701e7/c1232afd-012d-4288-a25f-388977450a60.png"/> Felix The Reaper</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="a80766d6-5b92-48b5-b8d9-bd64b74701e7/38ca8bd3-2ea6-47d3-8093-064071495794.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-23/07/2021">23/07/2021</a> 17:22:27</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Gog">Gog</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-GOG">GOG</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-16/10/2019">16/10/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-78">78</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Comedy">Comedy</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Kong Orange">Kong Orange</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Daedalic Entertainment">Daedalic Entertainment</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Controller support">Controller support</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://www.gog.com/game/felix_the_reaper" target="_blank">Store</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://items.gog.com/felix_the_reaper/assets_CLAPFEET_SLIM.gif.png">
+
+<br>
+Felix works at The Ministry of Death, and he's in love with Betty The Maiden from The Ministry of Life. He believes that going to the human world as a field reaper will enable him to one day meet her, so he's taken the job of making sure people die—and taught himself to dance, in order to impress the love of his (un)life.
+<br>
+ 
+<br>
+Since Felix only moves in the shadows, he needs to tread carefully through this strange world. Luckily, reapers like Felix are able to turn the sun and shift the shadows, creating the paths necessary to navigate the land of the living. He does so to solve puzzles and make sure people die according to ministerial plans.
+<br>
+ 
+<br>
+Each level unlocks a hardcore version of itself for the motivated ministerial go-getter. You can also collect skull achievements that further unlock bonus time trials for the most resourceful employees.
+<br>
+
+<br>
+<img src="https://items.gog.com/felix_the_reaper/assets_SALTO_SLIM_02.gif.png">
+
+<br>
+<ul class="bb_ul"><li>Challenge yourself to original puzzle game mechanics
+<br>
+</li><li>Experience a gruesomely sweet story and beautiful world
+<br>
+</li><li>Choose your own tunes from a selection of 10+ indie music artists on Felix‘s Walkman
+<br>
+</li><li>Collect skull achievements that unlock bonus time trials
+<br>
+</li><li>Watch Felix develop his dance moves—as created by professional dancers!</li></ul>
+<br>
+<img src="https://items.gog.com/felix_the_reaper/assets_DREAMING_IDLE.gif.png">
+
+<br>
+Felix The Reaper sprang from a fascination with the sprawling, humorous and grotesque art history of Death. Many themes have emerged in the cultural identity of Death, including <i>The Dance of Death</i> or <i>Danse Macabre</i> and <i>Death And The Maiden</i>. We sort of mashed those two themes together in Felix The Reaper.
+<br>
+ 
+<br>
+For the character himself and the world around him, the inspiration was more diverse: We took cues from the ancient TV show <i>The Twilight Zon</i>e, medieval painters like <i>Bruegel and Bosch</i> and the cartoon characters of <i>Adventure Time</i> and <i>Hayao Miyazaki</i>.
+<br>
+ 
+<br>
+Another important inspiration for Felix The Reaper was the amazing artistic collaborators in the production. We worked with dancers, a long list of music artists and history scholars.<h4>The Dance</h4>Several dancers contributed to the game's production, and eventually Gunilla Lind and Raphaël Ferdinand Eder-Kastling improvised the final moves that ended up in the game.
+<br>
+Here's Gunilla doing a dance move for Felix:
+<br>
+<img src="https://items.gog.com/felix_the_reaper/assets_SPLITSCREEN_Gunilla.gif.png" >
+<br>And here's Raphael doing another:
+<br>
+<img src="https://items.gog.com/felix_the_reaper/assets_SPLITSCREEN_Raphael.gif.png" ><h4>The Music</h4>Of course a game with a dancing protagonist needs great music—why else would he be dancing? We designed the game in a way that lets the music artists be themselves. We wanted them to add to the game through their personal artistic expression, rather than ask them to be what we want them to be. This made for a varied and strange combination of music. But since the gameplay is a non-stressful puzzler, you actually have time to appreciate and enjoy the weirdness while playing.<h4>The Art History</h4>The idea for the game itself stems from art history. We actually started with <i>The Danse Macabre</i> and <i>Death and The Maiden</i> as a basis, and then asked ourselves: How can we make a game about this? Eventually and through several different prototypes, we ended up here. 
+<br>
+ 
+<br>
+Alongside the production, a history scholar was diving into the art history of Death across more than 10 centuries for a book manuscript he is working on, and every time he hit upon something interesting he told us, and we tried to put it into the game if it fit. There are five different articles by this historian <i>Søren Hein Rasmussen</i> within the game—you can unlock them as you progress.
+
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

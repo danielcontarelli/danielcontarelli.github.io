@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Last Knight: Rogue Rider Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('9c1754eb-3ed7-4089-b902-b48bde2bfdee/902cf63a-14a5-4f64-bdb5-90c3f468d14c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="9c1754eb-3ed7-4089-b902-b48bde2bfdee/545e8aa4-7897-4941-9fbe-bdc31c84b818.ico"/> Last Knight: Rogue Rider Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="9c1754eb-3ed7-4089-b902-b48bde2bfdee/fca13fb2-0677-434e-b7ca-8cba7f93c9be.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>2h 38m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-11/10/2014">11/10/2014</a> 16:43:26</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-23/07/2021">23/07/2021</a> 17:30:19</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Jugado">Jugado</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-03/10/2014">03/10/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Toco Games">Toco Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Toco Games">Toco Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Captions Available">Captions Available</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Stats">Stats</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/262210" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/262210/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/262210/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=262210" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/262210" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=262210" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/262210/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<h1>Feature List</h1><p><ul class="bb_ul"><li><strong>OVER-THE-TOP JOUSTING!</strong> - Countless enemies had been shot, hacked and slashed in the history of games. Now it is time to ram a wooden lance in some gut, send your foes flying, and watch them bite the dust! Body parts ripping off, ragdoll horse physics, and destructive environments included.<br></li><li><strong>A BEAUTIFUL BRUTAL WORLD</strong> – Dive into a magical fantasy world full of treasures and adventures! Don't be fooled by the cartoony looks: here, simply bumping into a silly wooden fence spells a sudden end to your hero's life. If you fancy dying in a more heroic way, how about getting swallowed by a giant toad, falling into a lava pit, exploding from eating too much turkey, getting impaled by a Hitler Snowman, or just getting lit on fire by a dragon!<br></li><li><strong>BUCKETLOADS OF CONTENT</strong> – Divided into three major parts - the Story Mode, the Endless Journey Mode and the Rogue Rider Mode - this game has a lot to offer and there is always something new to accomplish, find, or unlock. Power-ups, characters, view modes, mutators, quests, game mode variations, randomly generated hats, you name it! Did you ever wish to be a skeleton king with a fancy wig riding over rainbows on a flower-pooping pink unicorn? It's all up to you in this game!<br></li><li><strong>INSPIRED BY CRASH BANDICOOT</strong> – Good third-person platformers were always hard to find on PC, when consoles sport countless shining examples: the first Crash Bandicoot titles, Spyro, Ratchet &amp; Clank, and Super Mario were all a big inspiration for Last Knight. This game kicks it up a notch with non-stop jousting action, no-health instant death, procedurally-generated worlds, as well as custom-crafted levels with Knightmare levels in-between. To top it off, the new Rogue Rider Mode pushes it all into a rogue-like direction, and if you don't like third-person view, try playing in first-person mode!</li></ul></p><br><h1>About the Game</h1>Last Knight is a unique genre mix that combines platforming, action-packed riding<br>and ragdoll physics driven jousting! It is fast-paced action in a never ending randomly generated Unreal Engine powered fantasy world!<br><br>The story mode put it's player in control of a squire on its way of becoming a knight. But before he can prove himself, events of epic proportions make him the last hope for the kingdom! On his heroic adventure he will have to fight the horned bucket heads and oversized hungry creatures. He will have to get through a wide range of dangerous environments as well as his own Knightmares. But beside the story there is much more. Various game modes let you adventure through always different never ending generated worlds filled with riches and dangers. On your journeys you will also find quests that will take each of the characters on different missions in the hunt for fame and glory as well as gold and chivalry. Gold can be spent on fancy power ups, while chivalry can unlock world bending mutators and different view modes like the intense first person view. Cutting-edge features like a fully dynamic randomized weather system and a collision system that can alter basically everything of the world geometry make this game even more over the top.<br><br><strong>Features:</strong><ul class="bb_ul">    <li>A full-fledged adventure in the story mode<br>    </li><li>Randomly generated world in the different endless modes<br>    </li><li>Your own adventure in a generated kingdom in the Rogue Rider Adventure mode<br>    </li><li>Wide range of different fantasy environments<br>    </li><li>Quests and rewards system<br>    </li><li>Beautiful graphics archived with the Unreal Engine<br>    </li><li>Unique Power ups and other special unlock-ables<br>    </li><li>Customization with different characters<br>    </li><li>Dynamic weather system<br>    </li><li>Ragdoll physics feedback<br>    </li><li>Impacts alter and deform the world<br>    </li><li>3rd Person, First Person and Bird's Eye view modes<br>    </li><li>World Mutators, Body Mutators and randomly generated hats</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

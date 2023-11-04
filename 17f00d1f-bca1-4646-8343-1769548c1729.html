@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Learn Programming: Python</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('17f00d1f-bca1-4646-8343-1769548c1729/c4f66003-ff9b-4f0f-8854-5c76e6314762.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="17f00d1f-bca1-4646-8343-1769548c1729/468bd695-e285-4262-89e3-1f8662106523.ico"/> Learn Programming: Python</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="17f00d1f-bca1-4646-8343-1769548c1729/c021b31d-f5f0-462e-bea0-4d29866b77e2.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>42m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-18/02/2021">18/02/2021</a> 18:40:21</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-23/07/2021">23/07/2021</a> 17:30:15</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-18/02/2021">18/02/2021</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-62">62</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Niema Moshiri">Niema Moshiri</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Niema Moshiri">Niema Moshiri</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/1536770" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1536770/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1536770/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=1536770" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/1536770" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1536770" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Welcome to <strong>Learn Programming: Python</strong>! The goal of this game is to introduce beginners to the wonders of the world of Computer Science! The game has have two core components:<br><br><ul class="bb_ul"><li><strong><u>Lessons</u>:</strong> An interactive course to teach you how to think computationally, how to write programs in Pythons, and how to design classes using the principles of Object-Oriented Programming (OOP).<br></li><li><strong><u>Challenges</u>:</strong> Multiple choice, short answer, and math problems to test your understanding of Python, computational thinking, and OOP. These challenges are embedded throughout the Lessons, so you can practice your understanding of concepts in real-time under an Active Learning framework.</li></ul><br>This game assumes absolutely <strong>zero prerequisite background</strong>. We hope you will join us as we explore the wonders of Programming in Python!<br><br><ul class="bb_ul"><li>Game developed by <strong>Niema Moshiri</strong><br></li><li>Lesson content developed by <strong>Sabeel Mansuri</strong></li></ul><h2 class="bb_tag">Table of Contents</h2><br><ul class="bb_ul"><li><strong>Chapter 1</strong> - Introduction: The Nuts &amp; Bolts<br></li><li><strong>Chapter 2</strong> - Conditionals: Ice Cream Isn't for Breakfast<br></li><li><strong>Chapter 3</strong> - Loops: Breakfast, Lunch, Dinner, Breakfast, Lunch, Din...<br></li><li><strong>Chapter 4</strong> - Data Structures: I'll Have Combo #3, Please!<br></li><li><strong>Chapter 5</strong> - Functions: How Do I Stop Rewriting Code?<br></li><li><strong>Chapter 6</strong> - Recursion: Give Me a Minute, I'm Getting a Call from Myself<br></li><li><strong>Chapter 7</strong> - Objects: Python, Have a Burger<br></li><li><strong>Chapter 8</strong> - Exceptions: You Can't Eat an Empty Bag of Chips<br></li><li><strong>Chapter 9</strong> - File I/O: Here's a Recipe, Make Me Some Macarons<br></li><li><strong>Chapter 10</strong> - Libraries: Hasn't Someone Done This Before?<br></li><li><strong>Chapter 11</strong> - Epilogue: What Now?</li></ul><h2 class="bb_tag">Important Notes</h2><br>The game executable is <strong>incorrectly flagged</strong> by some antivirus systems. The game, which was itself written in Python, is packaged into a single executable that contains a portable Python environment to ensure that the game will run even if Python is not installed. This packaging is being done using <a href="https://steamcommunity.com/linkfilter/?url=https://www.pyinstaller.org" target="_blank" rel="noopener"  ><strong>PyInstaller</strong></a>, and the issue of antivirus systems incorrectly flagging PyInstaller packages is <a href="https://steamcommunity.com/linkfilter/?url=https://github.com/pyinstaller/pyinstaller/issues?q=is%3Aissue+virus+is%3Aclosed" target="_blank" rel="noopener"  ><strong>well-known</strong></a>. I will be reaching out to antivirus companies about this issue, but for full transparency, here is the complete VirusTotal report:<br><br><a href="https://steamcommunity.com/linkfilter/?url=https://www.virustotal.com/gui/file/0fd68d9f3cbb6dfc34514386cb4cb78c5465dfc194acc7346036a94a75b9d37e/detection" target="_blank" rel="noopener"  >https://www.virustotal.com/gui/file/0fd68d9f3cbb6dfc34514386cb4cb78c5465dfc194acc7346036a94a75b9d37e/detection</a><br><br>Also, as a gift, I have decided to release the game's source code for free! This does not include the lesson data, but it contains the actual Python code behind the game engine. I hope this practical application of Python sparks your interest in learning the language!<br><br><a href="https://steamcommunity.com/linkfilter/?url=https://github.com/niemasd/Learn-Programming-Python-Source" target="_blank" rel="noopener"  >https://github.com/niemasd/Learn-Programming-Python-Source</a><h2 class="bb_tag">Frequently Asked Questions (FAQs)</h2><ul class="bb_ul"><li><strong>How can I increase the font size?</strong><br><ul class="bb_ul"><li>The game should be using your default Windows command prompt settings. To configure, when you start the game (which opens it in a maximized window), you should be able to right-click the bar above the window (which says &quot;Learn Programming: Python&quot;), click &quot;Properties&quot;, go to the &quot;Font&quot; tab, and select a larger font size.</li></ul></li><li><strong>How can I change the color scheme?</strong><br><ul class="bb_ul"><li>When you're on the main menu, click on &quot;Styles&quot;, and on the resulting &quot;Styles&quot; menu, you can select a different color scheme. I personally prefer &quot;Hacker Yellow&quot; for extended periods of time, as it is easiest on my eyes.</li></ul></li><li><strong>Will there be Mac or Linux support?</strong><br><ul class="bb_ul"><li>I don't have any plans for adding Mac/Linux support on Steam, but I have released the <a href="https://steamcommunity.com/linkfilter/?url=https://github.com/niemasd/Learn-Programming-Python-Source" target="_blank" rel="noopener"  >source code</a> of the game engine, which should be cross-platform compatible (assuming you have Python installed on your machine).</li></ul></li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

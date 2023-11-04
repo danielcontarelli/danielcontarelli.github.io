@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Serious Sam: Tormental</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('a562277b-8d45-4c24-b7c2-e66c7439c329/de30d18d-d7c8-4bd9-9297-4efa4efbbd57.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="a562277b-8d45-4c24-b7c2-e66c7439c329/92181268-cb4b-40ff-bc1b-b81619d26979.ico"/> Serious Sam: Tormental</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="a562277b-8d45-4c24-b7c2-e66c7439c329/b6c5b5f1-2a96-40e8-9959-356addb3b120.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>43m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-24/03/2021">24/03/2021</a> 16:46:52</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-23/07/2021">23/07/2021</a> 17:30:27</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Jugado">Jugado</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-02/04/2019">02/04/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Croteam">Croteam</a><br/><a href="default_developer_ascendente_name_ascendente.html#quicklink-Gungrounds">Gungrounds</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Croteam Incubator">Croteam Incubator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Co-Op">Co-Op</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Multi-Player">Multi-Player</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/640340" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/640340/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/640340/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=640340" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/640340" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=640340" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Deep into an abandoned temple of Egypt lies a cursed artifact, an ancient device capable of the unthinkable; Could this be the key to enter the mind of the god of destruction: Mental?<br><br>This may be your only chance to delve deep into the twisted world of its mind, where [Sam]'s quest will lead him against reckless hordes of monsters product of Mental's wicked imagination. Blast your way through the most hideous corners of its mind, and prepare for a brain-melting showdown!<h2 class="bb_tag">Features:</h2><ul class="bb_ul"><li> Fight against the wicked imaginations inside the mind of Mental, destructive god and Serious Sam's arch enemy, in an attempt to stop him once and for all. <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc01.gif?t=1565797908" /><br></li><li> Rich with content and replayability: procedurally generated dungeons, characters with unique abilities, randomized pools of powerful upgrades, tons of fun Serious Weapons ™. <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc02.gif?t=1565797908" /><br></li><li> The Vault ™: The final area contains many secrets and links to Mental’s identity, giving you more goals than just “defeat the final boss”. You will need to beat many challenges in order to stop Mental once and for all. <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc03.gif?t=1565797908" /> <br></li><li> Mindmap: discover hidden ideas inside of Mental's mind - what enemies, weapons, and items is he imagining to use in the real world? Acquire those ideas, and use them by yourself. Can you discover all of them? <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc04.gif?t=1565797908" /><br></li><li> Every run, gather &amp; combine random gun parts to construct unique powerful weapons. <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc05.gif?t=1565797908" /><br></li><li> Quests: beat various challenges to unlock new worlds, characters, Serious Weapons ™ and upgrades. Over time, you will discover new places hidden inside of Mental's mind. <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc07.gif?t=1565797908" /><br></li><li> Play together in local Co-op mode. Face stronger bosses, compete for (or share!) XP and revive each other with ankh pickups! <img src="https://cdn.akamai.steamstatic.com/steam/apps/640340/extras/desc06.gif?t=1565797908" /><br></li><li> Tight mechanics &amp; controls. Gamepad friendly. Precise visual collision similar to 2D games.<br></li><li> Created by fans of Geometry Wars, Nuclear Throne, Binding of Isaac, Serious Sam and Enter the Gungeon. &lt;3</li></ul><br><strong><u>EARLY ACCESS ROADMAP</u></strong><br><br>We look at the period between Early Access and until 1.0 final release in three parts: first, delivering more content, second, delivering a true ending and boss fight and finally, we want to have gameplay fully balanced by the time we go to 1.0 build. This also includes bug fixing and localization beyond just English.<br><br><strong>FEATURES IN CURRENT GAME</strong><br><i> (Please continue to check this area and the Steam forums for additions through the Early Access period)<br>The following features are available in the Early Access build:</i><br><br>5 Areas to explore <br>5 Boss fights to survive <br>3 Playable characters with unique abilities to master <br>35 Weapons to shoot with<br>30 Upgrades to mix and match<br>17 Weapon evolution upgrades <br>25 Quests<br>6+ NPCs <br>Local co-op<br>Mindmap<br>30+ Enemies<br>Inventory<br>Optional challenges<br>Shopkeeper, Vending Machine, Converter Machine, Reroll Machine, Armory<br>Interactive Objects - Bombs, Dynamite, Electric Bomb, Teleport, Bombs Spawner<br>Wheel of Misfortune<br>Traps - Various Spikes, Minefield, Turrets<br>HUB<br>Vault<br>Unlocks of content while playing<br>Chests, Mimic Chests, Locked Chests, Various Pickups<br>Highscores<br>Stats screen<br>Looping : loop #1, loop #2<br>Some alternative enemies and bosses while looping<br>Some level randomization <br>Voiced characters in English language<br>Some dialogues<br><br><strong>FEATURES PLANNED FOR VERSION 1.0</strong><br><i>The following features are not yet implemented and are planned as a part of the Early Access period. The timing and depth of these features are subject to change based on internal development milestone plan and community feedback:</i><br><br>Final Boss<br>Ending Sequence<br>Improved stats screen<br>Rebalance based on community feedback<br>More procedural generation and randomization<br>New Area - environment, boss, enemies, music track by Jukio Kallio<br>More Characters, including Bulb character<br>More Weapons<br>More Perks<br>More Quests
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

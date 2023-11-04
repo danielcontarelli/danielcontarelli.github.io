@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dawn of Man</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2b215028-8e8b-449e-be5d-e3fa0d9f3bed/26470f2c-6aaa-4c36-8c05-b20ef86b60ff.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="2b215028-8e8b-449e-be5d-e3fa0d9f3bed/69db362c-c123-4ffa-80d9-5dff1dbc6088.ico"/> Dawn of Man</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="2b215028-8e8b-449e-be5d-e3fa0d9f3bed/1d147f5d-fc22-4dcf-9150-c6fecedf23c9.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-27/10/2023">27/10/2023</a> 19:06:24</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-27/10/2023">27/10/2023</a> 19:07:44</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-01/03/2019">01/03/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Madruga Works">Madruga Works</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Madruga Works">Madruga Works</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/858810" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/858810/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/858810/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=858810" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/858810" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=858810" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/858810/achievements" target="_blank">Logros</a><br/><a href="https://steamcommunity.com/app/858810/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_ascendente_name_ascendente.html#quicklink-choices-matter">choices-matter</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-City Builder">City Builder</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Colony Sim">Colony Sim</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Destruction">Destruction</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Economy">Economy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Historical">Historical</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-indie">indie</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Management">Management</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Nudity">Nudity</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Open World">Open World</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-political">political</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Resource Management">Resource Management</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-rts">rts</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Sandbox">Sandbox</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Singleplayer">Singleplayer</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Story Rich">Story Rich</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Survival">Survival</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					Take control of a settlement of the first modern humans, guide them through the ages in their struggle for survival.<br><br><strong>Dawn of Man</strong> is a survival/city-builder from the creators of <a href="https://store.steampowered.com/app/403190/Planetbase/" target="_blank" rel=""  >Planetbase</a>.<br><br>The game starts in the <strong>Stone Age</strong>, and takes you up to the <strong>Iron Age</strong>, spanning more than 10,000 years of human prehistory.<br><br>You will have to get your people to survive, expand and evolve, just like our ancestors, facing the challenges that the environment will throw at you.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/858810/extras/title6.png?t=1693487519" /><h2 class="bb_tag">Hunt</h2>Animals were a vital source of food and resources for ancient humans. Use their meat to feed your people and their skin and bones to make clothing and craft the tools you will need to stay alive. <br>Confront <strong>Mammoths</strong>, <strong>Woolly Rhinos</strong>, <strong>Ancient Bison</strong>, <strong>Megaloceros</strong>, <strong>Cave Lions</strong> and other species that roamed the earth at the time.<h2 class="bb_tag">Gather</h2>Collect a variety resources from the environment: fruit, berries, water, wood, flint, stone, ores. Use them to prepare food, to make tools and to build structures in your settlement.<h2 class="bb_tag">Plan for harsh times</h2>Fish is more abundant in spring, berries and fruit can be collected in summer and animals are easier to come by when it's warm. <br>When winter comes, make sure to have enough non-perishable food and warm clothing in order to survive.<h2 class="bb_tag">Expand and fortify your settlement</h2>Build more homes and facilities for your people, in order to expand your population. <br>Construct fortifications and craft weapons, so you are ready for when the inevitable conflict comes.<h2 class="bb_tag">Research Technologies</h2>Each new discovery will make it easier for your settlement to be able to support larger populations, but will also bring new challenges: increased food demand, morale issues and more frequent raider attacks.<h2 class="bb_tag">Build Megalithic Structures</h2>Our ancestors were capable of incredible engineering feats: mine massive rocks from the environment, transport them using sledges and construct colossal stone structures.<h2 class="bb_tag">Control Nature</h2>Unlock farming technologies to grow your own vegetables, so you can feed large amounts of people. Domesticate animals to produce food, resources and provide increased muscle power.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/858810/extras/tavelling2.png?t=1693487519" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

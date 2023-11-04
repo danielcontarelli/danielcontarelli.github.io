@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>SUPER 56 Demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('3d4f7ac8-f757-4d40-b437-253ba4db4f72/31a2c08d-b01e-4032-ab60-8c28f3fabde6.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="3d4f7ac8-f757-4d40-b437-253ba4db4f72/323ae9d7-0f70-49ed-b71f-c1ad041dc6fd.ico"/> SUPER 56 Demo</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="3d4f7ac8-f757-4d40-b437-253ba4db4f72/7908ced9-be54-4f45-9f7d-c8b9771b9937.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-16/10/2023">16/10/2023</a> 11:22:00</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-16/10/2023">16/10/2023</a> 11:22:20</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-24/01/2023">24/01/2023</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Onion Soup Interactive">Onion Soup Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Onion Soup Interactive">Onion Soup Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Game Demo">Game Demo</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/1659150" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/1659150/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/1659150/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=1659150" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/1659150" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1659150" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1659150/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_ascendente_name_ascendente.html#quicklink-2D">2D</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-3D">3D</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Arcade">Arcade</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-clicker">clicker</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Collectathon">Collectathon</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Colorful">Colorful</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Cute">Cute</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-First-Person">First-Person</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Funny">Funny</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-hidden-object">hidden-object</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Memes">Memes</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Puzzle">Puzzle</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Racing">Racing</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Rhythm">Rhythm</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Runner">Runner</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Shooter">Shooter</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Sports">Sports</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/titleSuper56.gif?t=1681747906" /><h2 class="bb_tag">Welcome to Hell!</h2>You'll be staying with KRONOS and BRONES who saved up their meagre wages to buy the ultra rare retro game <strong>SUPER 56</strong>, a compilation of fifty-six ludicrous minigames. KRONOS and BRONES dream of reaching Rank S and <i>&quot;rubbing it in everyone's faces&quot;</i>, but sadly they suck, so your job is to do it for them.<h2 class="bb_tag">What is SUPER 56?</h2>Eons ago SUPER 56 was banned by the Government of Pain, it is rumoured that all copies were buried in the Samsara desert. Now, SUPER 56 catroids have been spotted in independent gaming stores throughout Hell. <br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/Super56_GameBox_WithHellspawn.png?t=1681747906" /><br><br>Each run challenges players to get through as many minigame stages as possible before running out of lives, each stage is timed and as you pass each stage the game-speed will get dialled up until all Hell is unleashed. You'll earn medals for high scores on each stage and your best run goes onto the worldwide leaderboard.<h2 class="bb_tag">Challenges</h2>Daily and Weekly challenges keep the action fresh and there's even rumours of free updates being added regularly to the game.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/SteamPage_GIF_JRPG.gif?t=1681747906" /><br><i>JRPG in 25 seconds!!</i><h2 class="bb_tag">2D and 3D Retro Gaming </h2>Each minigame stage comes from a different era of gaming, from the 8-bit era onwards featuring 2D handheld styles to fully 3D fantasy RPGs, to pseudo 3D hedgehog inspired stages and tons more:<br><br><ul class="bb_ul"><li>Karting, fishing, archery<br></li><li>Typing, photography, courtroom drama<br></li><li>Refuelling a car, presenting the news, extreme skiing<br></li><li>Puzzles, retro 3D mazes, CATS<br></li><li>FPS, RPG, PPE(!)<br></li><li>... and so many more!</li></ul><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/level_montage_super_56.gif?t=1681747906" /><br><i>A montage of levels. Even Rocky had a montage<i><h2 class="bb_tag">Inclusive Gamplay</h2>The denizens of Hell aka Hellspawn come in all shapes and sizes, KRONOS' mum has four legs and only one face. DAVE the local poet is a possessed Grateful Dead t-shirt that floats around aimlessly, that's why the developers designed SUPER 56's gameplay around a single button.<h2 class="bb_tag">More Amazing Features</h2>and that's not all, here's some more stuff to wrap your brain around:<br><br><br><ul class="bb_ul"><li>Unlock Mod Stones to change the rules of each playthrough<br></li><li>Get bronze, silver or aim for gold on each stage<br></li><li>Collect coins and gift-bags to change up your profile which is visible on the leaderboard<br></li><li>Found a secret achievement? Leave hints for other players or if you're a big meanie try to confuse them with misinformation.<br></li><li>Can't find an achievement? Buy hints from other players (note, they may be trolling you lol)<br></li><li>Climb the leaderboard, it's totally worth it!<br></li><li>Compare your score, achievements and Mod Stones with friends and players worldwide</li></ul><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/SteamPage_GIF_Ach_Unlocked.gif?t=1681747906" /><h2 class="bb_tag">Achievements galore!</h2><ul class="bb_ul"><li>Every stage has an achievement<br></li><li>Unlock even more achievements by gaining XP and levelling up<br></li><li>Think outside the box to find secret achievements hidden throughout the stages<br></li><li>Track your career and achievement progress in the career menu</li></ul><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/boric_collecting_apples_super_56.gif?t=1681747906" /><br><i>Gotta run fast to collect 20 apples</i><h2 class="bb_tag">Choose your character</h2>Customise your experience with unlockable characters, profile items, voice-packs, colours, patterns and ludicrous phrases. Be a fish, a bear, Nishibori, an ugly baby. Whatever you be, just be yourself. Open gift bags full of fun stuff or buy that item you've always wanted using coins collected from the in-game action.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/look_at_camera_reading_the_news_super_56.gif?t=1681747906" /><br><i>Live your best cameraman fantasy as Abe reads the news</i><h2 class="bb_tag">Hold on to your trousers</h2>Here's 6 more reasons you'll love SUPER 56:<br><br><br><ul class="bb_ul"><li>Full of references, homages and ridiculous humour<br></li><li>Easy to learn and hard to master<br></li><li>Fast, funny and occasionally flatulent<br></li><li>Experience the thrill of victory by completing a stage at the last possible nanosecond<br></li><li>Get medals for each stage, beat your personal best, be the best YOU that YOU can be<br></li><li>Tap your feet to the killer dynamic soundtrack</li></ul><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1983190/extras/attourney_you_lie.gif?t=1681747906" /><br><i>No lies here, all of this is included in SUPER 56!</i></i></i>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

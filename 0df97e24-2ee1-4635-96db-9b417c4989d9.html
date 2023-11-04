@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Train Simulator</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0df97e24-2ee1-4635-96db-9b417c4989d9/7a5e6b1a-6d86-4e95-8010-6ab4acebccc5.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="0df97e24-2ee1-4635-96db-9b417c4989d9/7ea7b0f0-1e71-48de-be3f-02cd8c1542da.ico"/> Train Simulator</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="0df97e24-2ee1-4635-96db-9b417c4989d9/d94250bb-ef34-4feb-a069-a466a65adfc9.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>7h 43m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-14/02/2021">14/02/2021</a> 11:53:19</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-23/07/2021">23/07/2021</a> 17:30:17</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Jugado">Jugado</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-17/09/2015">17/09/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Dovetail Games">Dovetail Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-Dovetail Games - Trains">Dovetail Games - Trains</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Trading Cards">Trading Cards</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/24010" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/24010/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/24010/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=24010" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/24010" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=24010" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/24010/achievements" target="_blank">Achievements</a><br/><a href="https://steamcommunity.com/app/24010/workshop/" target="_blank">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<h1>New DLC Available</h1><p><a href="https://store.steampowered.com/app/1560939" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/1560939</a><br><a href="https://store.steampowered.com/app/1560934" target="_blank" rel="noreferrer"  id="dynamiclink_1" >https://store.steampowered.com/app/1560934</a><br><a href="https://store.steampowered.com/app/1560931" target="_blank" rel="noreferrer"  id="dynamiclink_2" >https://store.steampowered.com/app/1560931</a></p><br><h1>About the Game</h1><img src="https://cdn.akamai.steamstatic.com/steam/apps/24010/extras/TS21_KeyArt_Description_Asset.jpg?t=1627052791" /><h2 class="bb_tag"><strong>THE ULTIMATE RAIL HOBBY</strong></h2>Take control of powerful iconic locomotives from around the world. Step in the cab and master operations on the BR Class 68, DB BR 218, EMD F7 and more as you deliver passengers and freight to their destinations with a packed timetable of real-world services and scenarios. Train Simulator 2021 also features an improved Steam Workshop providing easy access to thousands of community creations. Whatever you love about trains, Train Simulator lets you take your hobby to the next level.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/24010/extras/TS2021_Steam_Store_Fife.gif?t=1627052791" /><h2 class="bb_tag"><strong>Fife Circle Line</strong></h2>With Train Simulator's Fife Circle Line, you can marvel at the mix of modern and historic infrastructure, including the striking and instantly recognisable Forth Rail Bridge, as well as the new Edinburgh Gateway station. Experience all this and more across 49 miles between Edinburgh and Dunfermline via Kirkaldy, aboard modern traction such as the BR Class 68, Class 158 and Class 170.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/24010/extras/TS2021_Steam_Store_N-Bahn.gif?t=1627052791" /><h2 class="bb_tag"><strong>Norddeutsche-Bahn</strong></h2> Experience the 80 km Kiel-Lubeck Railway in the heart of the Schleswig-Holstein, amongst the most scenic areas of Northern Germany. Step aboard hard-working traction such as the DB BR 648 DMU and DB BR 218 diesel locomotive, taking passengers across stunning vistas and through the heart of forested plains.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/24010/extras/TS2021_Steam_Store_Clinchfield_v2.gif?t=1627052791" /><h2 class="bb_tag"><strong>Clinchfield Railroad</strong></h2>Train Simulator’s Clinchfield Railroad recreates the northern portion of the CRR, where the railroad wove its way through the daunting and magnificent Appalachian Mountains and in the process served a variety of on-line coal mines. Take the throttle of the motive power featured with the route such as the EMD GP7 and F7, EMD SD40, and EMD GP38.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/24010/extras/line_for_steam_3.png?t=1627052791" /><h2 class="bb_tag"><strong>STEAM WORKSHOP - IMPROVED!</strong></h2>Fans of Steam Workshop will find new features to enhance the usability of the tool and improve the overall experience. Find, subscribe and download your favourite community created content without having to leave the comfort of Train Simulator.<h2 class="bb_tag"><strong>DRIVE</strong></h2>The unparalleled authenticity of the locomotives in Train Simulator 2021 means you are truly in control. Manage your engine, passengers, safety systems, signalling and much more from the comfort of the cab, with control boards the perfectly re-create the operations of real trains.<h2 class="bb_tag"><strong>LEARN</strong></h2>Enter the TS Academy and begin your career as a virtual train driver or engineer. Whether it’s Electric, Diesel or Steam you will learn to operate some of the world’s most amazing rail-bound machines.<h2 class="bb_tag"><strong>CREATE</strong></h2>Use the Train Simulator Editor to build living worlds with easy-to-use comprehensive tools. Create your own railway and share with other players with the Steam Workshop or check out the thousands of community creations already available with new in-game search functions.<h2 class="bb_tag"><strong>COLLECT</strong></h2>Build a dream set of routes, locomotives, trains, route extensions and rolling stock with a vast array of content on the Steam store. With hundreds of add-ons available, whatever your interest you’ll find something new to expand your collection at your own pace.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/24010/extras/line_for_steam_3.png?t=1627052791" /><br><br>Please note that WCML South (included in Train Simulator 2021 Deluxe Edition) is a highly detailed route and you will be required to adjust your in-game settings to get the best possible experience. Please consult the accompanying user manual for detailed instructions.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
