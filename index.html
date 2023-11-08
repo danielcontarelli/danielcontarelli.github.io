@@ -220,6 +220,16 @@ a:active {
   background-color: #555; /* Add a dark-grey background on hover */
 }
 
+select#combobselect {
+    background-color:#555;
+    color:#CCC;
+}
+
+#label {
+   font-size: 20px;
+   color: #CCC;
+}
+
 input{
   display: block;
   background: #fff;
@@ -249,10 +259,10 @@ input:hover{
 #searchbutton:hover{
 	border: 0.1rem solid #0F52BA !important;
 }
-    </style>
+	</style>
    <script>
 	function search() {
-		var input, filter, games, game, cards, card, i, j, txtValue, wrapper, quicklinks, quicklink, quicklinkid, needhide, numvisible, quicklinklinks;
+		var input, filter, games, game, cards, card, i, j, txtValue, wrapper, quicklinks, quicklink, quicklinkid, needhide, numvisible, quicklinklinks, quicklinkvalue;
 		input = document.getElementById("search");
 		filter = input.value.toUpperCase();
 
@@ -279,6 +289,7 @@ input:hover{
 		while (i >= 0) {
 			quicklink = quicklinks[i];
 			quicklinkid = quicklink.id;
+			quicklinkvalue = quicklinkid.replace("quicklink-", "");
 			cards = fragment.getElementById(quicklinkid.replace("quicklink-", ""));
 			needhide = true;
 			if(cards)
@@ -296,7 +307,7 @@ input:hover{
 					j--;
 				}
 				
-				quicklinklinks = fragment.childNodes[0].querySelectorAll("a[href=\"#" + quicklinkid.replace(/["\\]/g, '\\$&') + "\"]")
+				quicklinklinks = fragment.childNodes[0].querySelectorAll("option[value=\"#" + quicklinkid.replace(/["\\]/g, '\\$&') + "\"]")
 				if (needhide)
 				{
 					quicklink.style.display = "none";
@@ -305,7 +316,8 @@ input:hover{
 					{
 						quicklink.children[0].children[0].innerHTML = "&#x25BA;";
 						quicklink.children[0].children[0].style.color = "#790000";
-						quicklink.children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )"
+						quicklinklinks[0].innerText = quicklinkvalue + " (" + numvisible.toString() + ")";
+						quicklink.children[0].children[1].children[0].innerText = "(" + numvisible.toString() + ")"
 						quicklinklinks[0].style.display = "none";
 					}
 				} else {
@@ -315,7 +327,8 @@ input:hover{
 					{
 						quicklink.children[0].children[0].innerHTML = "&#x25BC;";
 						quicklink.children[0].children[0].style.color = "#007962";
-						quicklink.children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )";
+						quicklinklinks[0].innerText = quicklinkvalue + " (" + numvisible.toString() + ")";
+						quicklink.children[0].children[1].children[0].innerText = "(" + numvisible.toString() + ")"
 						quicklinklinks[0].style.display = "";
 					}
 				}
@@ -349,10 +362,10 @@ input:hover{
     <button onclick="topFunction()" id="BackTopButton" title="Go to top">Top</button>
     <div class="wrapper" id="wrapper">
       <h2><strong>MEN&#218; PRINCIPAL - Nombre<span>(Nombre ascendente / Nombre ascendente)</span></strong></h2>
-      <div class="Menu"><a Class="MenuButton" href="index.html">Nombre ▲</A><a Class="MenuButton" href="default_source_ascendente_name_ascendente.html">Fuente ▲</A><a Class="MenuButton" href="default_library_ascendente_name_ascendente.html">Librer&#237;a ▲</A><a Class="MenuButton" href="default_platform_ascendente_name_ascendente.html">Plataforma ▲</A><a Class="MenuButton" href="default_releaseyear_descendente_name_ascendente.html">A&#241;o de lanzamiento ▼</A><a Class="MenuButton" href="default_agerating_ascendente_name_ascendente.html">Clasificaci&#243;n por edad ▲</A><a Class="MenuButton" href="default_favorite_ascendente_name_ascendente.html">Favorito ▲</A><a Class="MenuButton" href="default_lastactivitysegment_ascendente_name_ascendente.html">Fecha de &#250;ltima actividad ▲</A><a Class="MenuButton" href="default_playtimecategory_ascendente_name_ascendente.html">Categor&#237;a de tiempo de juego ▲</A><a Class="MenuButton" href="default_communityscore_descendente_name_ascendente.html">Puntuaci&#243;n de la Comunidad ▼</A><a Class="MenuButton" href="default_criticscore_descendente_name_ascendente.html">Puntuaci&#243;n de la Cr&#237;tica ▼</A><a Class="MenuButton" href="default_category_ascendente_name_ascendente.html">Categor&#237;a ▲</A><a Class="MenuButton" href="default_genre_ascendente_name_ascendente.html">G&#233;nero ▲</A><a Class="MenuButton" href="default_developer_ascendente_name_ascendente.html">Desarrollador ▲</A><a Class="MenuButton" href="default_feature_ascendente_name_ascendente.html">Caracter&#237;stica ▲</A><a Class="MenuButton" href="default_publisher_ascendente_name_ascendente.html">Editor ▲</A><a Class="MenuButton" href="default_serie_ascendente_name_ascendente.html">Serie ▲</A><a Class="MenuButton" href="default_added_descendente_name_ascendente.html">A&#241;adido ▼</A><a Class="MenuButton" href="default_lastactivity_descendente_name_ascendente.html">&#218;ltima actividad ▼</A><a Class="MenuButton" href="default_releasedate_descendente_name_ascendente.html">Fecha de lanzamiento ▼</A><a Class="MenuButton" href="default_playtime_descendente_name_ascendente.html">Tiempo de juego ▼</A><a Class="MenuButton" href="default_tag_ascendente_name_ascendente.html">Tag ▲</A></div>
+      <div class="Menu"><a Class="MenuButton" href="index.html">Nombre ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_source_ascendente_name_ascendente.html">Fuente ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_library_ascendente_name_ascendente.html">Librer&#237;a ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_platform_ascendente_name_ascendente.html">Plataforma ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_releaseyear_descendente_name_ascendente.html">A&#241;o de lanzamiento ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_agerating_ascendente_name_ascendente.html">Clasificaci&#243;n por edad ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_favorite_ascendente_name_ascendente.html">Favorito ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_lastactivitysegment_ascendente_name_ascendente.html">Fecha de &#250;ltima actividad ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_playtimecategory_ascendente_name_ascendente.html">Categor&#237;a de tiempo de juego ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html">Puntuaci&#243;n de la Comunidad ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html">Puntuaci&#243;n de la Cr&#237;tica ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_category_ascendente_name_ascendente.html">Categor&#237;a ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html">G&#233;nero ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html">Desarrollador ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html">Caracter&#237;stica ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html">Editor ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_serie_ascendente_name_ascendente.html">Serie ▲</A><a Class="MenuButton" href="default%20combobox%20quicklinks_added_descendente_name_ascendente.html">A&#241;adido ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html">&#218;ltima actividad ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html">Fecha de lanzamiento ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_playtime_descendente_name_ascendente.html">Tiempo de juego ▼</A><a Class="MenuButton" href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html">Tag ▲</A></div>
       <h2><strong>Buscar</strong></h2><input type="text" id="search" placeholder="Escribe el nombre del juego para buscar"><br/><button onclick="search()" id="searchbutton">Buscar</button>
       <h2><strong>Enlaces r&#225;pidos</strong></h2>
-	  <div class="quicklinks"><a class="quicklink" href="#quicklink-#">#</A><a class="quicklink" href="#quicklink-A">A</A><a class="quicklink" href="#quicklink-B">B</A><a class="quicklink" href="#quicklink-C">C</A><a class="quicklink" href="#quicklink-D">D</A><a class="quicklink" href="#quicklink-E">E</A><a class="quicklink" href="#quicklink-F">F</A><a class="quicklink" href="#quicklink-G">G</A><a class="quicklink" href="#quicklink-H">H</A><a class="quicklink" href="#quicklink-I">I</A><a class="quicklink" href="#quicklink-J">J</A><a class="quicklink" href="#quicklink-K">K</A><a class="quicklink" href="#quicklink-L">L</A><a class="quicklink" href="#quicklink-M">M</A><a class="quicklink" href="#quicklink-N">N</A><a class="quicklink" href="#quicklink-O">O</A><a class="quicklink" href="#quicklink-P">P</A><a class="quicklink" href="#quicklink-Q">Q</A><a class="quicklink" href="#quicklink-R">R</A><a class="quicklink" href="#quicklink-S">S</A><a class="quicklink" href="#quicklink-T">T</A><a class="quicklink" href="#quicklink-U">U</A><a class="quicklink" href="#quicklink-V">V</A><a class="quicklink" href="#quicklink-W">W</A><a class="quicklink" href="#quicklink-X">X</A><a class="quicklink" href="#quicklink-Y">Y</A><a class="quicklink" href="#quicklink-Z">Z</A></div>
+      <P id="label">Nombre: <select id="combobselect" onchange="window.location=this.options[this.selectedIndex].value"><option value="#quicklink-#"># (67)</option><option value="#quicklink-A">A (376)</option><option value="#quicklink-B">B (295)</option><option value="#quicklink-C">C (321)</option><option value="#quicklink-D">D (373)</option><option value="#quicklink-E">E (154)</option><option value="#quicklink-F">F (233)</option><option value="#quicklink-G">G (216)</option><option value="#quicklink-H">H (191)</option><option value="#quicklink-I">I (117)</option><option value="#quicklink-J">J (54)</option><option value="#quicklink-K">K (91)</option><option value="#quicklink-L">L (175)</option><option value="#quicklink-M">M (310)</option><option value="#quicklink-N">N (93)</option><option value="#quicklink-O">O (132)</option><option value="#quicklink-P">P (285)</option><option value="#quicklink-Q">Q (29)</option><option value="#quicklink-R">R (261)</option><option value="#quicklink-S">S (679)</option><option value="#quicklink-T">T (652)</option><option value="#quicklink-U">U (63)</option><option value="#quicklink-V">V (69)</option><option value="#quicklink-W">W (197)</option><option value="#quicklink-X">X (21)</option><option value="#quicklink-Y">Y (22)</option><option value="#quicklink-Z">Z (33)</option></select></P>
       <div id="quicklink-#"><h2 id="h2jscript" onclick="ShowHide('#')"><strong id="eye-#" style="color: #007962;">&#x25BC;</strong><strong>#<span>( 67 )</span></strong></h2></div>
 <div id="#" class="cards">
 <figure class="card">
@@ -23048,7 +23061,7 @@ input:hover{
   </a>
 </figure>
 
-</div><div id="quicklink-S"><h2 id="h2jscript" onclick="ShowHide('S')"><strong id="eye-S" style="color: #007962;">&#x25BC;</strong><strong>S<span>( 678 )</span></strong></h2></div>
+</div><div id="quicklink-S"><h2 id="h2jscript" onclick="ShowHide('S')"><strong id="eye-S" style="color: #007962;">&#x25BC;</strong><strong>S<span>( 679 )</span></strong></h2></div>
 <div id="S" class="cards">
 <figure class="card">
   <a href="5d9d4532-e463-41f5-9080-01117eda3f44.html">
@@ -26155,6 +26168,12 @@ input:hover{
 <figure class="card">
   <a href="44eea0a7-4b81-468a-a985-7525c3cfd5fd.html">
   <img class="lozad" data-src="44eea0a7-4b81-468a-a985-7525c3cfd5fd/ee4dde29-e64a-412e-b63a-dc2b5342479d.jpg"/>
+  <figcaption>Steel Rats</figcaption>
+  </a>
+</figure>
+<figure class="card">
+  <a href="c99be338-1f55-4364-9337-48c523955a3f.html">
+  <img class="lozad" data-src="c99be338-1f55-4364-9337-48c523955a3f/51bd3d2a-ec40-495d-b2c7-8371f7d4b840.jpg"/>
   <figcaption>Steel Rats</figcaption>
   </a>
 </figure>
