@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>SpellForce: Conquest of Eo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('ccc58c4c-8503-42d1-a9a4-e67d2ddae130/f51031c3-244f-4429-bcb2-a9df774c01fa.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="ccc58c4c-8503-42d1-a9a4-e67d2ddae130/b03a3911-22d1-4dc5-8e5f-2ba4ebd674f2.ico"/> SpellForce: Conquest of Eo</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="ccc58c4c-8503-42d1-a9a4-e67d2ddae130/bcd9214b-aea9-4f11-a552-cf2ea1dc8a37.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default_added_descendente_name_ascendente.html#quicklink-04/11/2023">04/11/2023</a> 17:05:25</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-04/11/2023">04/11/2023</a> 17:06:28</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default_releasedate_descendente_name_ascendente.html#quicklink-03/02/2023">03/02/2023</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default_communityscore_descendente_name_ascendente.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default_criticscore_descendente_name_ascendente.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default_developer_ascendente_name_ascendente.html#quicklink-Owned by Gravity">Owned by Gravity</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default_publisher_ascendente_name_ascendente.html#quicklink-THQ Nordic">THQ Nordic</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascendente_name_ascendente.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/1581770" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/1581770/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/1581770/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=1581770" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/1581770" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1581770" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1581770/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default_tag_ascendente_name_ascendente.html#quicklink-3D">3D</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Crafting">Crafting</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Dark Fantasy">Dark Fantasy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Fantasy">Fantasy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Grand Strategy">Grand Strategy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Horses">Horses</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Loot">Loot</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Lore-Rich">Lore-Rich</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Medieval">Medieval</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Military">Military</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Mystery">Mystery</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-oldschool">oldschool</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Strategy RPG">Strategy RPG</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Tactical">Tactical</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Tactical RPG">Tactical RPG</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Top-Down">Top-Down</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Turn-based Strategy">Turn-based Strategy</a><br/><a href="default_tag_ascendente_name_ascendente.html#quicklink-Turn-Based Tactics">Turn-Based Tactics</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					In this turn-based strategy game set in the fantastic world of SpellForce, take up the mantle of your master as the heir to his mysterious wizard’s tower.  <br>Study a multitude of spells to cast over the lands around you, summon fantastical minions and train mighty warriors to roam the world. Fight in fast-paced but tactical turn-based battles.<h2 class="bb_tag">Explore the Realm of Eo</h2> Win over mighty heroes to go on adventures for you, find useful artefacts and ingredients or bring back riches. <br>Seek out talented apprentices to expand your domain and workers to gather a wealth of resources for you.   Unearth the secrets inherited from your master and follow his quest to tap and unleash the ultimate source of magical power – the Allfire!<h2 class="bb_tag">Face powerful foes </h2>  <br>Among the other mages, there are those who would oppose your rise to power. You will have to face  great armies  and even greater ambitions of your rival Mages. Can you survive the struggle for domination? <br>To expand your domain, you will need to control sources of Allfire, so you can fill your grimoire with new magical spells, craft mighty artefacts, and expand and improve your tower.<h2 class="bb_tag">Choose wisely</h2> Become a Necromancer creating dozens of powerful undead, an Alchemist concocting potions and explosive vials for use in battle or an Artificer crafting glyphs and magical items to furnish your troops with. Bolster your might with over 60 spells and more than 100 different troops from lowly goblins to majestic griffons.<h2 class="bb_tag">Leave your mark</h2> Befriend cities, harvest resources, and expand your domain. Fill your grimoire with arcane knowledge to best your rivals as you vie for sources of power. Hunt arcane artefacts and unearth the long-hidden secrets of the Shapers or take control of mythical locations to absorb their power.  Improve your tower and furnish it with new rooms to grow your dominion, with upgrades ranging from a necromancer’s crypt to the mystical crystal chamber.<h2 class="bb_tag">Tower on the fly </h2> Your immense magical sophistication allows your tower to levitate from the ground and travel the lands. <br>On your path to exploit the sources of magical power on Eo, you will face New Purity fanatics, hostile granite dwarves, and bloodthirsty orcs. Encounter undead, demons, and monsters as you explore forgotten ruins or help a village haunted by ghosts.  <br>You might even need to face the other wizards’ armies of minions and best them in battle so you can march on your competitors’ towers and reduce them to rubble. Or perhaps you might find a way for you to appease them and profit from their knowledge? <br><br>SpellForce: Conquest of Eo lets you dive into a rich world, filled to the brim with magic and adventure. Will you succeed or perish in the struggle to become the greatest mage the world has ever seen? <br><br><ul class="bb_ul"><li>Expand and improve your tower and construct new rooms to forge your wizard’s path  <br></li><li>Choose from one of three archetypes and six spell lists, all allowing different styles of play <br></li><li>Recruit individual heroes and apprentices to lead your troops <br></li><li>Make the living interactive grimoire reveal new secrets and spells to you  <br></li><li>Craft anything from magical glyphs and artefacts to undead minions <br></li><li>Explore over 600 adventures different with each procedurally generated campaign</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
