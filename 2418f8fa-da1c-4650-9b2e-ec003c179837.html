@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Alters Demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2418f8fa-da1c-4650-9b2e-ec003c179837/f4cc6e84-ae63-4d95-aeb1-afd9730d113d.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="2418f8fa-da1c-4650-9b2e-ec003c179837/064275cf-82ad-43c8-b83a-a4b3f7d01f02.ico"/> The Alters Demo</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="2418f8fa-da1c-4650-9b2e-ec003c179837/9a17d339-9424-47ae-b8be-770cfa0ad565.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-20/06/2024">20/06/2024</a> 19:17:45</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-20/06/2024">20/06/2024</a> 19:19:12</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20combobox%20quicklinks_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-10/06/2024">10/06/2024</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-11 Bit Studios">11 Bit Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-11 Bit Studios">11 Bit Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Game Demo">Game Demo</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/1601570" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/1601570/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/1601570/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=1601570" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/1601570" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1601570" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-3D">3D</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action-Adventure">Action-Adventure</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-base-building">base-building</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Crafting">Crafting</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Exploration">Exploration</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Futuristic">Futuristic</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Management">Management</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Philosophical">Philosophical</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-psychological">psychological</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Resource Management">Resource Management</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-science">science</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Singleplayer">Singleplayer</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Space">Space</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Survival">Survival</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Third Person">Third Person</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Time Management">Time Management</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/extras/The_Alters_press_preview_quote_IGN_616x320_v2.png?t=1718811268" /><br><br><i>From the creators of This War of Mine</i><h2 class="bb_tag">FEATURES:</h2><br><ul class="bb_ul"><li>Take the role of <strong>Jan Dolski</strong>, an everyday man facing impossible odds on a distant planet.<br></li><li>Face important choices from the past in order to save yourself in the present.<br></li><li>Create new versions of yourself to complete tasks impossible to tackle on your own.<br></li><li>Build relationships with the alters and try to influence their decisions.<br></li><li>Discover what manner of choices you are willing to make in order to survive.<br></li><li>Manage a moving base in order to escape the deadly rays of a rising sun.<br></li><li>Utilize the planet’s cycle to mine resources and keep your base running.</li></ul><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/extras/Alters_Steam_June2024_1.gif?t=1718811268" /><br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/extras/The_Alters_press_preview_quote_game_rant_616x320_v2.png?t=1718811268" /><h2 class="bb_tag">STRANDED BUT NOT ALONE</h2><br>Jan Dolski is a simple worker who faces impossible odds. Crash-landing on a distant planet, stranded and alone, he seems trapped with no way out. Jan’s only hope for survival is to employ additional helping hands on board his mobile base… but how? Improvising as he goes, Jan uses the local Rapidium substance to create alternate versions of himself: THE ALTERS.<br><br>Have you wondered how your life would change if you chose a different path in the past? Who would you become? Jan Dolski is about to face answers to these questions which makes the predicament he is in even more daunting. Each one of his alters has a different personality and background as his life path is a result of a specific change in Jan’s life. <br><br>To return home, Jan must not only get along with his alters but also face some crucial choices he made in the past. The decisions he will make based on that can occasionally put someone’s life at risk. The question is – are you ready to deal with the consequences of these choices?<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/extras/Alters_Steam_June2024_3.gif?t=1718811268" /><h2 class="bb_tag">A RACE AGAINST TIME</h2><br>The planet Jan has landed on is slowly turning its face towards a giant sun. This means that radiation levels can quickly reach a critical level. Survival on this unforgiving planet is a death race, so the base Jan lives in must remain on the move. This, of course, is far easier said than done. The planet is highly inhospitable and filled with many difficult obstacles our Jan will have to overcome.<br><br>To move across barren landscapes you need food, fuel, and other precious resources. Luckily, your base is ready to extract them from the surface of the planet. The only problem is that finding these required resources might prove quite challenging… and the time to do so is running out.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1601570/extras/The_Alters_press_preview_quote_rock_paper_shotgun_616x320_v3.png?t=1718811268" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

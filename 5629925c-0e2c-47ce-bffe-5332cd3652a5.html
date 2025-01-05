@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sea of ​Mutation: Rebirth</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('5629925c-0e2c-47ce-bffe-5332cd3652a5/437e7d9d-0249-42b4-b280-e2586a183853.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="5629925c-0e2c-47ce-bffe-5332cd3652a5/70b792b2-cbd4-41a2-871e-62358a86717e.ico"/> Sea of ​Mutation: Rebirth</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="5629925c-0e2c-47ce-bffe-5332cd3652a5/975cc968-3980-4ad8-90ed-d6c350ad1a4d.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>19m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-16/07/2024">16/07/2024</a> 17:38:07</TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-19/07/2024">19/07/2024</a> 16:59:39</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-19/07/2024">19/07/2024</a> 17:01:41</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Jugado">Jugado</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20combobox%20quicklinks_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-15/07/2024">15/07/2024</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-NightWalker">NightWalker</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-NightWalker">NightWalker</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/3073390" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/3073390/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/3073390/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=3073390" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/3073390" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=3073390" target="_blank">PCGamingWiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-2D">2D</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Battle Royale">Battle Royale</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Creature Collector">Creature Collector</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Dark Fantasy">Dark Fantasy</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-indie">indie</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Roguelite">Roguelite</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Shoot 'Em Up">Shoot 'Em Up</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Singleplayer">Singleplayer</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Top-Down">Top-Down</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fdiscord.gg%2FxWQNmhWkPb" target="_blank" rel=" noopener"  ><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/ds.png?t=1721371029" /></a><br><br>Differences between the official version and the prologue<br>Prologue only opens one character and one map<br><br>Take you into the crisis-ridden nuclear contaminated sea where all the creatures are slowly mutating. You will play as an initial ordinary fish, surviving in the nuclear contaminated sea. Attacking and devouring other fish, you will continue to accumulate radiation and mutate, growing into an ocean beast, defeating other monsters, and ultimately becoming the sole ruler of the ocean.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/1y.png?t=1721371029" /><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/1.gif?t=1721371029" /><br>The player's main goal is to gradually evolve and build their own giant sea monster by accumulating radiation and devouring other creatures. This process is not only challenging, but also very strategic and personalized. Players can choose different evolutionary paths based on their preferences, and each choice will have a unique impact on the sea monster's abilities and appearance. As the game progresses, players will witness amazing changes in their character, growing from a small fish to a giant that rules the ocean, a process that is full of fulfillment and fun to explore.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/2y.png?t=1721371029" /><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/2.gif?t=1721371029" /><br>The enemies in the game are not fixed, but will randomly mutate depending on the environment and game progression, which adds to the uncertainty and complexity of the game. Each time the player enters the game, he or she may encounter completely new challenges and enemies, which requires the player to constantly adapt and adjust his or her strategy. The random mutation mechanism of enemies also mimics the unpredictability of nature, making the game experience richer and more realistic. Players must learn to survive and thrive in this ever-changing environment in order to ultimately become the dominant force in the ocean.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/3y.png?t=1721371029" /><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3073390/extras/3.gif?t=1721371029" /><br>The ocean environment has become extremely dangerous and unstable due to nuclear contamination. There are various dangers hidden in the ocean, and players need to stay alert at all times and utilize their intelligence to overcome the difficulties. The crisis-ridden ocean environment is not only the player's enemy, but also an important factor to enhance the game experience and increase the fun of the game.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

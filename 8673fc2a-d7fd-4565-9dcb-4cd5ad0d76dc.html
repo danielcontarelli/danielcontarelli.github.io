@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Out There: Oceans of Time</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('8673fc2a-d7fd-4565-9dcb-4cd5ad0d76dc/c0c00608-0e20-4736-ab80-8a986fe80475.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="8673fc2a-d7fd-4565-9dcb-4cd5ad0d76dc/3658a23a-2176-45e5-ace9-15dfc3ebffec.ico"/> Out There: Oceans of Time</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="8673fc2a-d7fd-4565-9dcb-4cd5ad0d76dc/f6a7e609-950c-4198-8ff6-ebaaca14ff92.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-31/07/2024">31/07/2024</a> 19:41:58</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-31/07/2024">31/07/2024</a> 19:42:37</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20combobox%20quicklinks_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-26/05/2022">26/05/2022</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-53">53</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-57">57</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Goblinz">Goblinz</a><br/><a href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Mi-Clos Studio">Mi-Clos Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Fractale">Fractale</a><br/><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Modern Wolf">Modern Wolf</a><br/><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Whisper Games">Whisper Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/1145290" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/1145290/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/1145290/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=1145290" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/1145290" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=1145290" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/1145290/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Atmospheric">Atmospheric</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-choices-matter">choices-matter</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Choose Your Own Adventure">Choose Your Own Adventure</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Exploration">Exploration</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Female Protagonist">Female Protagonist</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Open World">Open World</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Replay Value">Replay Value</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Resource Management">Resource Management</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Roguelike">Roguelike</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Roguelite">Roguelite</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Singleplayer">Singleplayer</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Space">Space</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Story Rich">Story Rich</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Strategy">Strategy</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Survival">Survival</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Turn-based">Turn-based</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Turn-based Strategy">Turn-based Strategy</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145290/extras/OTOOT_Redshift_Steam_description_capsule.png?t=1665675287" /><br><br>The cosmos is calling.<br>Take the helm of an interstellar expedition of discovery spanning the vast and vibrant infinity of space. The definitive Out There: Oceans of Time experience is available now, with the new Redshift Update.<br><br><ul class="bb_ul"><li>New Oxygen management system on Rocky Planets Expeditions<br></li><li>New class skills<br></li><li>New Consumable Items<br></li><li>New maps for all expedition types<br></li><li>New way to explore maps (Tunnels, Ancient Portals, and Unstable Structures)<br></li><li>Overall difficulty balancing</li></ul><br>The successor to the award-winning <a href="https://store.steampowered.com/app/334420/Out_There__Edition/" target="_blank" rel=""  >Out There</a>, Oceans of Time blends resource management and interactive fiction for a space survival epic where death is one wrong decision away. <br><br>As Commander Nyx, explore a vast galaxy that is different every time you play, as you search for the Archon; a cosmic villain set on dominating the civilisations of the galaxy.<br><br>Encounter other strange lifeforms and learn to communicate, trade, and conduct diplomacy as you build a coalition of allies in your mission to find the Archon.<br><br>Recruit new members from the alien races you cross paths with, and build a team capable of traversing the cosmos. Manage your crew, your ship and its systems; the mission’s success is down to your decisions as Commander. <br><br>Experience a deep, branching narrative written by FibreTigre, dialogue by Christos Gage (<i>Daredevil</i> (Netflix, 2015), <i>Spider-Man</i> (Insomniac, Sony, 2018)) and beautiful interactive cutscenes illustrated by renowned artist Benjamin Carré (<i>Transformers: Age of Extinction, Alone in the Dark</i>).<br><br><strong>Out There: Oceans of Time</strong> is developed by Mi-Clos Studio, the creators of Out There and Sigma Theory.<h2 class="bb_tag">FEATURES</h2><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145290/extras/A-VAST-AND-VIBRANT-GALAXY.gif?t=1665675287" /><br><br>Navigate an expansive cosmos that is different every time you play.<br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145290/extras/EXPEDITIONS-ACROSS-UNCHARTED-PLANETS.gif?t=1665675287" /><br><br>Explore unexplored terrain and collect resources for your ship, and the next leg of your journey. <br> <br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145290/extras/BUILD-AND-MANAGE-YOUR-CREW.gif?t=1665675287" /><br><br>Recruit from a diverse range of Alien lifeforms, and build a team capable of surviving the furthest reaches of the cosmos. <br><br><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1145290/extras/DEEP-BRANCHING-NARRATIVE.gif?t=1665675287" /><br><br>An epic space-saga penned by FibreTigre, with dialogue from Christos Gage.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Deep Rock Galactic: Survivor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('dc379c20-76f0-452e-ac50-6e86ec3e93b5/65af2e28-9858-4b2c-970e-47c5901d7129.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="dc379c20-76f0-452e-ac50-6e86ec3e93b5/3b3e7435-7a76-45a9-b774-480276ad32ca.ico"/> Deep Rock Galactic: Survivor</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="dc379c20-76f0-452e-ac50-6e86ec3e93b5/11eb5e5e-e46b-4038-9391-e4ad485eebb7.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-30/06/2024">30/06/2024</a> 12:29:26</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-30/06/2024">30/06/2024</a> 12:31:42</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20combobox%20quicklinks_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-14/02/2024">14/02/2024</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-84">84</a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Early Access">Early Access</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Funday Games">Funday Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Ghost Ship Publishing">Ghost Ship Publishing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/2321470" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/2321470/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/2321470/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=2321470" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/2321470" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=2321470" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/2321470/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action Roguelike">Action Roguelike</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Aliens">Aliens</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Arcade">Arcade</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-arena-shooter">arena-shooter</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Atmospheric">Atmospheric</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Bullet Hell">Bullet Hell</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-combat">combat</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Dark">Dark</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Dwarf">Dwarf</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-early-access">early-access</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Procedural Generation">Procedural Generation</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-PvE">PvE</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Roguelite">Roguelite</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Score Attack">Score Attack</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Singleplayer">Singleplayer</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Space">Space</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Top down shooter">Top down shooter</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Top-Down">Top-Down</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					<img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2321470/extras/drgs_AboutThisGame-Top_shape_616x230_ver01.gif?t=1719323678" /><h2 class="bb_tag"><strong>Welcome, Survivor!</strong></h2>DEEP ROCK GALACTIC: SURVIVOR is a single player survivor-like auto-shooter. Take on hordes of lethal aliens, mine riches, and unlock powerful upgrades to survive, as you wield the full arsenal of Deep Rock Galactic. It's one dwarf against all of Planet Hoxxes!<h2 class="bb_tag">REVERSE BULLET HELL, WITH MINING</h2>Kill bugs, upgrade your gear, and delve ever deeper into the lethal caves of Hoxxes. Collect and assemble a devastating array of guns, unleash hell upon wave after wave of alien monsters in fast and frenetic combat, and tunnel your way to collect precious riches from deep within the cave walls. With the auto-shooter gameplay, you don’t worry about aiming and firing – just run and mine for your life, as you automatically blast away. <br><br>Each mission is entirely unique with its own procedural cave generation and enemy waves, just as you've come to know from Deep Rock Galactic.<h2 class="bb_tag">COMPLETE MISSION OBJECTIVES TO BECOME STRONGER</h2>Dig deep, Miner! Once the Drop Pod releases you into the oppressive darkness, you’re on your own. Complete the mission objectives set forth by the Company, and make it back to the Drop Pod in time to try your luck at even more deadly and lucrative encounters. Progress deeper and deeper into the planet while you grow ever stronger, survive all the way to the very end of your assignment, and finally get extracted alongside your hefty sack of loot.<h2 class="bb_tag">DEEP ROCK, FROM A WHOLE NEW PERSPECTIVE</h2>Now you can explore the Deep Rock Galactic universe in a whole new single-player-focused experience! Play each mission from a top-down perspective, navigating the caves of Hoxxes as you've never seen them before, soaking it up through nonstop auto-shooter action. Greybeard Deep Rock veterans will recognize much from Deep Rock Galactic, and if you are a recently joined Greenbeard: Welcome all the same! We are thrilled to have you on board. You will like it here. Management requires it.<br><br><br><br>Initial release on early access includes:<br><br><ul class="bb_ul"><li>4 classes<br></li><li>42 weapons<br></li><li>20 enemy types<br></li><li>2 big bad bosses<br></li><li>4 biomes<br></li><li>A deep progression system of class mods, artifacts, masteries, and upgrades</li></ul><br>The finished version will contain even more content, and other features - all to be determined as we receive and review feedback from the community during Early Access.<br><br><br><strong>ROCK AND STONE!</strong>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

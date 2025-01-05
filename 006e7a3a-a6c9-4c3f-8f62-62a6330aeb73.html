@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>CONSORTIUM Remastered</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('006e7a3a-a6c9-4c3f-8f62-62a6330aeb73/e7373d1f-358c-4a6d-9fff-957114cecb5c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="006e7a3a-a6c9-4c3f-8f62-62a6330aeb73/8c6af43a-063d-414d-960a-0b4b0341a627.ico"/> CONSORTIUM Remastered</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Detalles</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="006e7a3a-a6c9-4c3f-8f62-62a6330aeb73/2c49b8a6-a807-4d3d-8d15-9c89920091cb.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Tiempo de juego</TD>
+								<TD>No Jugado</TD>
+							</TR>
+							<TR>
+								<TD>Última actividad</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descendente_name_ascendente.html#quicklink-Nunca">Nunca</a> </TD>
+							</TR>
+							<TR>
+								<TD>Añadido</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descendente_name_ascendente.html#quicklink-22/05/2024">22/05/2024</a> 10:41:47</TD>
+							</TR>
+							<TR>
+								<TD>Modificado</TD>
+								<TD><a href="#quicklink-22/05/2024">22/05/2024</a> 10:42:09</TD>
+							</TR>
+							<TR>
+								<TD>Estado de finalización</TD>
+								<TD><a href="#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Librería</TD>
+								<TD><a href="default%20combobox%20quicklinks_library_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Fuente</TD>
+								<TD><a href="default%20combobox%20quicklinks_source_ascendente_name_ascendente.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Plataforma</TD>
+								<TD><a href="default%20combobox%20quicklinks_platform_ascendente_name_ascendente.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Fecha de lanzamiento</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html#quicklink-21/05/2024">21/05/2024</a> </TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Comunidad</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de la Crítica</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Puntuación de usuario</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Género</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-RPG">RPG</a><br/><a href="default%20combobox%20quicklinks_genre_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Desarrollador</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascendente_name_ascendente.html#quicklink-Interdimensional Games Inc">Interdimensional Games Inc</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Editor</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascendente_name_ascendente.html#quicklink-Interdimensional Games Inc">Interdimensional Games Inc</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Característica</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Family Sharing">Family Sharing</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default%20combobox%20quicklinks_feature_ascendente_name_ascendente.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Enlaces</TD>
+								<TD><a href="https://steamcommunity.com/app/2380550" target="_blank">Punto de encuentro</a><br/><a href="https://steamcommunity.com/app/2380550/discussions/" target="_blank">Discusiones</a><br/><a href="https://steamcommunity.com/app/2380550/guides/" target="_blank">Guías</a><br/><a href="https://store.steampowered.com/news/?appids=2380550" target="_blank">Noticias</a><br/><a href="https://store.steampowered.com/app/2380550" target="_blank">Página de la tienda</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=2380550" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/2380550/achievements" target="_blank">Logros</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-3D">3D</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Action-Adventure">Action-Adventure</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-choices-matter">choices-matter</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-conversation">conversation</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-First-Person">First-Person</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Immersive">Immersive</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-immersive-sim">immersive-sim</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Investigation">Investigation</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Level Editor">Level Editor</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Mystery">Mystery</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Narrative">Narrative</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Nonlinear">Nonlinear</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Sci-fi">Sci-fi</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Shooter">Shooter</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Simulation">Simulation</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Stealth">Stealth</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Story Rich">Story Rich</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Stylized">Stylized</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Voice Control">Voice Control</a><br/><a href="default%20combobox%20quicklinks_tag_ascendente_name_ascendente.html#quicklink-Well-Written">Well-Written</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Descripci&#243;n</H3>
+				</div>
+				<div class="description">
+					NOTE:  There is a full VR version of this game which <i>includes</i> CONSORTIUM Remastered.  <a href="https://store.steampowered.com/app/1428880/CONSORTIUM_VR/" target="_blank" rel=""  id="dynamiclink_1" >https://store.steampowered.com/app/1428880/CONSORTIUM_VR/</a>   Saved games are 100% transferable between VR and non-VR. <br> <br>As Consortium Bishop Six, players assume the role of an investigator tasked with solving a mysterious murder, unveiling concealed conspiracies, and skillfully navigating interpersonal relationships among the diverse crew. Consortium boasts a highly interactive narrative, empowering players to make choices that influence the story's trajectory. With its innovative branching dialogue system, an immersive storyline, and a richly detailed game world, Consortium offers players a unique and engaging experience that explores the consequences of their decisions and the nature of trust and loyalty.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/2380550/extras/zenlil_poster_master2_Small.png?t=1716315581" /><br><br><ul class="bb_ul"><li>Introducing V.O.I.C.E.: Choose to use your own voice—or not—to interact with twenty fully realized characters aboard the Consortium Command vessel, C-3800-D “Zenlil.”<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/2380550/extras/VOICE_GIF.gif?t=1716315581" /><br><br></li><li>Navigate a nuanced murder mystery in a deeply interactive and replayable 6-10 hour campaign. Choose diplomacy without ever drawing a weapon, or take a more aggressive route when you can, ultimately shaping the public’s perception of you. What kind of Bishop will you be? This chart outlines one possible path among many one can take through the story.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/2380550/extras/consortiumVR_storychart_path.gif?t=1716315581" /><br><br></li><li>Immerse yourself into a deeply realized bright future where many of humanity's problems have been solved, yet shadows linger beneath the surface. Access an in-world Information Console containing ~250 documents (news articles, blogs, mission reports and more), along with ~170 AI-generated images.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/2380550/extras/info_console_GIF.gif?t=1716315581" /><br><br></li><li>Control an array of weapons, protective gear, medical equipment and more.<br></li><li>Craving more FPS action? Explore and play many different gameplay scenarios within the Virtual Trainer (VT) and even make your own VT levels with our VT level editor! (Note: mouse/keyboard only). Share your levels with the world with built-in modding support.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/2380550/extras/VT_Editor.png?t=1716315581" /></li></ul><h2 class="bb_tag">What Makes This A Remaster?</h2><br><ul class="bb_ul"><li>Full port to a modern game engine allowed for substantial bug fixes, graphics and performance improvements.<br></li><li>Redesigned the entire user interface system from the ground up.<br></li><li>A completely new ending after years of feedback and hindsight, including a newly recorded conversation with the Consortium King.<br></li><li>Months of polish to choreography and dialogue options while integrating V.O.I.C.E. (see above)<br></li><li>Complete remake of the “Zenlil Defence Minigame”<br></li><li>Overhaul of the Virtual Trainer + several more levels to explore, integrated mod support and a leaderboard system.<br></li><li>Multiple editing/polish passes on all documents inside the Information Console (including nearly 100 new ones!) + ~170 AI-generated images.<br></li><li>Additional languages (German and French to start with).</li></ul><br>Welcome to the Consortium.
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
